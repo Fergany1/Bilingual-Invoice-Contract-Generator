@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useForm } from '../UseForm/useForm'
+import { useForm } from '../Hooks/useForm'
  
 
-const ProviderForm = () => {
-    const { formData , onChange  , } = useForm({
-        name: '' , address: '' , email: '' , serviceCategory: '' , hourlyRate: ''
-    })
+const ProviderForm = ({ onConfirm}) => {
+    const { values , handleChange } = useForm()
     
 
-    const handleSubmit = (e) => {
-        e.preventDefualt();
-        console.log('Saving Prodvider Data : ' , formData)
+    const handleConfirm = (e) => {
+        e.preventDefault();
+        console.log('Prodvider Data Ready --- ' , values)
+
+        onConfirm();
 
     }
     
@@ -18,38 +18,108 @@ const ProviderForm = () => {
     return (
         <div>
 
-            <form onSubmit={handleSubmit}>
+            <form 
+            className="provider-form"
+            onSubmit={handleConfirm}>
                 <h2>From : Provider</h2>
-                <input type="text" onChange={onChange} name="name" placeholder="Full Name ..." />
-                <input type="text" onChange={onChange} name="address" placeholder="Address ..." />
-                <input type="text" onChange={onChange} name="email" placeholder="Email ..." />
-                <textarea name="serviceCategory" onChange={onChange} placeholder="Service Details ..."></textarea>
-                <button type="submit">Submit</button>
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        name="providerName"
+                        value={values.providerName} 
+                        placeholder="Full Name ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        name="providerAddress" 
+                        value={values.providerAddress}
+                        placeholder="Address ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        name="providerEmail" 
+                        value={values.providerEmail}
+                        placeholder="Email ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <textarea 
+                        name="serviceCategory" 
+                        onChange={handleChange} 
+                        value={values.serviceCategory}
+                        placeholder="Service Details ..."></textarea>
+                    </label>
+                </div>
+                <button type="submit">Confirm </button>
             </form>
 
         </div>
     )
 }
 
-const ClientForm = () => {
-    const { formData , onChange  , saved} = useForm({
-        name: '' , shippingAddress: '' , email: '' 
-    })
+const ClientForm = ({ onConfirm }) => {
+    const { values , handleChange } = useForm()
     
     
-    const handleSubmit = (e) => {
-        e.preventDefualt();
-        console.log('Saving Client Data : ' , formData)
-        
+    const handleConfirm = (e) => {
+        e.preventDefault(); // Stop Reloading the Page
+        console.log('Client Data --- ' , values)
+
+        // For the Generating Invoice
+        if (onConfirm) onConfirm();
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleConfirm}>
                 <h2>Bill To : Client</h2>
-                <input type="text" onChange={onChange} name="name" placeholder="Full Name ..." />
-                <input type="text" onChange={onChange} name="email" placeholder="Email ..." />
-                <textarea type="text" onChange={onChange} value="shippingAddress" placeholder="Address Details ..." />
+
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        name="clientName" 
+                        value={values.clientName}
+                        placeholder="Full Name ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        value={values.clientEmail}
+                        name="clientEmail" 
+                        placeholder="Email ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <textarea 
+                        type="text" 
+                        onChange={handleChange} 
+                        value={values.shippingAddress} 
+                        name="shippingAddress"
+                        placeholder="Address Details ..." />
+                    </label>
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -61,10 +131,16 @@ export default function ClientSelect() {
     
     return (
         <div>
-                <button onClick={() => setUser('Provider')}>Service Provider</button>
+                <button onClick={() => setUser('Provider')}>Provider</button>
                 <button onClick={() => setUser('Client')}>Client</button>
                 {/* Conditional Rendering For Client & Provider */}
-                {user === 'Provider' ? <ProviderForm /> : <ClientForm />}
+                {user === 'Provider' ? (
+                <ProviderForm onConfirm={() => setUser('Client')}/>
+            ) : (
+
+                <ClientForm />
+
+                )}
             </div>
 
         )

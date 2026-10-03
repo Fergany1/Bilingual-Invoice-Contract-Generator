@@ -1,12 +1,35 @@
 import { useState } from 'react'
 import './App.css'
+import { ContextProvider } from './Hooks/useForm'
 import InvoiceForm from './InvoiceForm'
+import TestForm from './SandBoxTest/SandBox'
 
 function App() {
+  const initialInvoiceValues = {
+    // Provider Info
+    providerName: '' ,
+    providerAddress: '' ,
+    providerEmail: '' ,
+    serviceCategory: '' , 
+    hourlyRate: '',
 
+    // Client Info
+    clientName: '' , 
+    shippingAddress: '' , 
+    clientEmail: '' ,
+
+    // Table Array Field
+    items: [
+      {description: '' , quantity: 1 , price: 0}
+    ]
+  };
   return (
     <>
-      <InvoiceForm />
+      {/* <InvoiceForm /> */}
+      <ContextProvider initialValue={initialInvoiceValues}>
+        <InvoiceForm />
+
+      </ContextProvider>
     </>
   )
 }

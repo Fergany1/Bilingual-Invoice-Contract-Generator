@@ -1,8 +1,8 @@
-import useForm from '../UseForm/useForm'
+import useForm from '../Hooks/useForm'
 import { use } from 'react'
 
 export default function ServicesDetails(){
-    const [ date , setDate ] = useForm(Date.now())
+    const [ date , setDate ] = useForm()
     const [ time , setTime ] = useForm(time.now())
     const [ name , setName ] = useForm("")
 
