@@ -3,6 +3,7 @@ import './App.css'
 import { ContextProvider } from './Hooks/useForm'
 import InvoiceForm from './InvoiceForm'
 import TestForm from './SandBoxTest/SandBox'
+import ServicesDetails from './InvoiceForm/ServicesDetails'
 
 function App() {
   const initialInvoiceValues = {
@@ -20,15 +21,19 @@ function App() {
 
     // Table Array Field
     items: [
-      {description: '' , quantity: 1 , price: 0}
-    ]
+      {id: 1 ,description: '' , quantity: 1 , price: 0}
+    ],
+
+    // Time and date
+    serviceDate: '',
+    serviceTime: '',
+    techinician: '',
   };
   return (
     <>
       {/* <InvoiceForm /> */}
       <ContextProvider initialValue={initialInvoiceValues}>
         <InvoiceForm />
-
       </ContextProvider>
     </>
   )

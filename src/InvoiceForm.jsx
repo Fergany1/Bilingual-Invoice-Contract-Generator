@@ -1,9 +1,9 @@
 import ClientSelect from "./InvoiceForm/ClientSelect";
-import LineItemEditor from "./InvoiceForm/LineItemEditor";
+import ServicesDetails from "./InvoiceForm/ServicesDetails";
 export default function InvoiceForm () {
 
     return(<>
         <ClientSelect /> <hr />
-        <LineItemEditor />
+        <ServicesDetails />
     </>)
 }
