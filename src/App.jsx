@@ -28,6 +28,9 @@ function App() {
     serviceDate: '',
     serviceTime: '',
     techinician: '',
+
+    // Total Price For Services
+    totalPrice: ''
   };
   return (
     <>

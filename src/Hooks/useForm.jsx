@@ -41,9 +41,9 @@ export function useFormLogics  (initialValue) {
         setValues((prev) => {
             const updateArray = [...prev[arrayName] , emptyRowObject]
 
-            // Testing
-            console.log(`---Adding A Row "${arrayName}" ----`);
-            console.log(updateArray)
+            // // Testing
+            // console.log(`---Adding A Row "${arrayName}" ----`);
+            // console.log(updateArray)
 
             return {
                 ...prev,

@@ -114,9 +114,9 @@ export default function ServicesDetails() {
                 </tbody>
             </table>
                     <button
-                    onClick={
-                        addTableRow
-                        ('items' , {id: Date.now() ,description: '' , quantity: 1 , price: 0})
+                    onClick={() => addTableRow
+                        ('items' ,
+                        {id: Date.now() ,description: '' , quantity: 1 , price: 0})
                     }
                     >Add</button>
         </div>
