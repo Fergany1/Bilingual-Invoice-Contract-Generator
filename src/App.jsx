@@ -50,11 +50,11 @@ function App() {
 
       {/* Render the forms inside their own isolated Context Providers */}
       {currentTab === 'invoice' ? (
-        <ContextProvider initialValue={initialInvoiceValues}>
+        <ContextProvider initialValue={initialInvoiceValues} storageKey="saved_invoice_data">
           <InvoiceForm />
         </ContextProvider>
       ) : (
-        <ContextProvider initialValue={initialContractValues}>
+        <ContextProvider initialValue={initialContractValues} storageKey="saved_contract_data">
           <ContractForm />
         </ContextProvider>
       )}

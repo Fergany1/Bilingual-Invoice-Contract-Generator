@@ -1,13 +1,22 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 // 1. Create Channel (BroadCast)
 const FormContext = createContext(null)
 
 
 // 2. Create Logic Func
-export function useFormLogics  (initialValue) {
-    const [ values , setValues ] = useState(initialValue)
+export function useFormLogics  (initialValue , storageKey) {
+    const [ values , setValues ] = useState(() => {
+        if (!storageKey) return initialValue;
+        const savedData = localStorage.getItem(storageKey);
+        return savedData ? JSON.parse(savedData) : initialValue;
+    })
     
+    useEffect(() => {
+        if (storageKey) {
+            localStorage.setItem(storageKey , JSON.stringify(values))
+        }
+    } , [values , storageKey])
     // handle change for inputs (text , options , time , date)
     const handleChange = (e) => {
         const { name , type , value , checked } = e.target
@@ -77,8 +86,8 @@ export function useFormLogics  (initialValue) {
 }  
 
 // 3. Create Context Provider
-export function ContextProvider({ children , initialValue }) {
-    const formMethods = useFormLogics(initialValue)
+export function ContextProvider({ children , initialValue , storageKey }) {
+    const formMethods = useFormLogics(initialValue , storageKey)
     return (
         <FormContext.Provider value={formMethods}>
             {children}
