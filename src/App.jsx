@@ -1,44 +1,64 @@
 import { useState } from 'react'
 import './App.css'
 import { ContextProvider } from './Hooks/useForm'
+import ContractForm from './ContractForm'
 import InvoiceForm from './InvoiceForm'
-import TestForm from './SandBoxTest/SandBox'
-import ServicesDetails from './InvoiceForm/ServicesDetails'
+
 
 function App() {
+  // 1. Tab state to switch views on screen
+  const [currentTab, setCurrentTab] = useState('invoice');
+
+  // Your existing completed invoice state shape
   const initialInvoiceValues = {
-    // Provider Info
-    providerName: '' ,
-    providerAddress: '' ,
-    providerEmail: '' ,
-    serviceCategory: '' , 
-    hourlyRate: '',
-
-    // Client Info
-    clientName: '' , 
-    shippingAddress: '' , 
-    clientEmail: '' ,
-
-    // Table Array Field
-    items: [
-      {id: 1 ,description: '' , quantity: 1 , price: 0}
-    ],
-
-    // Time and date
-    serviceDate: '',
-    serviceTime: '',
-    techinician: '',
-
-    // Total Price For Services
-    totalPrice: ''
+    providerName: '', providerAddress: '', providerEmail: '', serviceCategory: '', hourlyRate: '',
+    clientName: '', shippingAddress: '', clientEmail: '',
+    items: [{ id: 1, description: '', quantity: 1, price: 0 }],
+    serviceDate: '', serviceTime: '', techinician: '', totalPrice: ''
   };
+
+  // 2. Your NEW contract state shape (Completely flat, no tables needed!)
+  const initialContractValues = {
+    contractDate: '',
+    contractProvider: '',
+    contractClient: '',
+    scopeOfWork: '',
+    paymentTerms: '',
+    terminationClause: '',
+    isAgreed: false // Checkbox boolean
+  };
+
   return (
-    <>
-      {/* <InvoiceForm /> */}
-      <ContextProvider initialValue={initialInvoiceValues}>
-        <InvoiceForm />
-      </ContextProvider>
-    </>
+    <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto' }}>
+      <h1>Document Generator Platform</h1>
+      
+      {/* Tab Navigation Buttons */}
+      <div style={{ marginBottom: '30px', display: 'flex', gap: '10px' }}>
+        <button 
+          onClick={() => setCurrentTab('invoice')}
+          style={{ backgroundColor: currentTab === 'invoice' ? '#007bff' : '#ccc', color: 'white' }}
+        >
+          Invoice Generator
+        </button>
+        <button 
+          onClick={() => setCurrentTab('contract')}
+          style={{ backgroundColor: currentTab === 'contract' ? '#007bff' : '#ccc', color: 'white' }}
+        >
+          Contract Generator
+        </button>
+      </div>
+
+      {/* Render the forms inside their own isolated Context Providers */}
+      {currentTab === 'invoice' ? (
+        <ContextProvider initialValue={initialInvoiceValues}>
+          <InvoiceForm />
+        </ContextProvider>
+      ) : (
+        <ContextProvider initialValue={initialContractValues}>
+          <ContractForm />
+        </ContextProvider>
+      )}
+    </div>
   )
 }
 

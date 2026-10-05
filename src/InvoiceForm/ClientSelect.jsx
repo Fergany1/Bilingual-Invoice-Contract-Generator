@@ -138,10 +138,10 @@ export default function ClientSelect() {
                 <ProviderForm onConfirm={() => setUser('Client')}/>
             ) : (
 
-                <ClientForm onConfirm={()
-                     => console.log("All identity data confirmed! Ready to build document.")}/>
-
-                )}
+                <ClientForm onConfirm={() => console.log("All identity data confirmed! Ready to build document.")}/>
+                
+                
+            )}
             </div>
 
         )
