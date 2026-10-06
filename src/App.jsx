@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import { ContextProvider } from './Hooks/useForm'
 import ContractForm from './ContractForm'
 import InvoiceForm from './InvoiceForm'
