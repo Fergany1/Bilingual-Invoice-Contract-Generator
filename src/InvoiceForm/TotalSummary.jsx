@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "../Hooks/useForm";
 
 export default function TotalSummary() {

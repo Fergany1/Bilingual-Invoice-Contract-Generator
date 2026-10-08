@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from '../Hooks/useForm'
  
 
@@ -131,8 +131,8 @@ export default function ClientSelect() {
     
     return (
         <div>
-                <button onClick={() => setUser('Provider')}>Provider</button>
-                <button onClick={() => setUser('Client')}>Client</button>
+                <button type="button" onClick={() => setUser('Provider')}>Provider</button>
+                <button type="button" onClick={() => setUser('Client')}>Client</button>
                 {/* Conditional Rendering For Client & Provider */}
                 {user === 'Provider' ? (
                 <ProviderForm onConfirm={() => setUser('Client')}/>

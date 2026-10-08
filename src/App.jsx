@@ -12,8 +12,8 @@ function App() {
   const initialInvoiceValues = {
     providerName: '', providerAddress: '', providerEmail: '', serviceCategory: '', hourlyRate: '',
     clientName: '', shippingAddress: '', clientEmail: '',
-    items: [{ id: 1, description: '', quantity: 1, price: 0 }],
-    serviceDate: '', serviceTime: '', techinician: '', totalPrice: ''
+    items: [{ id: 1, title:'' , description: '', quantity: 1, price: 0 }],
+    serviceDate: '', serviceTime: '', technician: '', totalPrice: ''
   };
 
   // 2. Your NEW contract state shape (Completely flat, no tables needed!)

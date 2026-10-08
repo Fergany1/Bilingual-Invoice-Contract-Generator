@@ -6,10 +6,16 @@ const FormContext = createContext(null)
 
 // 2. Create Logic Func
 export function useFormLogics  (initialValue , storageKey) {
+
     const [ values , setValues ] = useState(() => {
         if (!storageKey) return initialValue;
-        const savedData = localStorage.getItem(storageKey);
-        return savedData ? JSON.parse(savedData) : initialValue;
+        try {
+            const savedData = localStorage.getItem(storageKey);
+            return savedData ? {...savedData , ...JSON.parse(savedData) } : initialValue;
+
+        } catch (err) {
+            console.warn("Saved Data Was Un-Readable Setting Default " , err)
+        }
     })
     
     useEffect(() => {

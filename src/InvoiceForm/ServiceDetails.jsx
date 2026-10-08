@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useForm } from "../Hooks/useForm";
 
-export default function ServicesDetails() {
+export default function ServiceDetails() {
     const {
         values ,
         addTableRow,
@@ -36,9 +35,9 @@ export default function ServicesDetails() {
             <label>
                 <p>Techinician: </p>
                 <input
-                name="techinician"
+                name="technician"
                 onChange={handleChange}
-                value={values.techinician}
+                value={values.technician}
                 placeholder="U Name ..."></input>
             </label>
         </div>
@@ -103,6 +102,7 @@ export default function ServicesDetails() {
                             <td>
 
                                 <button 
+                                type="button"
                                 onClick={() => removeTableRow('items' , index)}
                                 disabled={values.items.length === 1}
                                    >
@@ -114,6 +114,7 @@ export default function ServicesDetails() {
                 </tbody>
             </table>
                     <button
+                    type="button"
                     onClick={() => addTableRow
                         ('items' ,
                         {id: Date.now() ,description: '' , quantity: 1 , price: 0})
