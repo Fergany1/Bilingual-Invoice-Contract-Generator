@@ -18,6 +18,7 @@ export default function ServiceDetails() {
             <label>
                 <p>Date: </p>
                 <input
+                type="date"
                 value={values.serviceDate}
                 name="serviceDate"
                 onChange={handleChange}

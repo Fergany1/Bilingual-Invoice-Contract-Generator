@@ -1,16 +1,10 @@
 import { useForm } from "../Hooks/useForm";
+import { calculateTotals } from "../utils/calculateTotals";
 
 export function InvoicePreview() {
     const { values } = useForm();
 
-    const subTotal = values.items.reduce((accu , item) => {
-        const price = parseFloat(item.price) || 0;
-        const quantity = parseFloat(item.quantity) || 0;
-        return accu + (price * quantity);
-    } , 0);
-
-    const taxTotal = subTotal * 0.10 // Tax 10%
-    const grandTotal = subTotal + taxTotal;
+    const { subTotal , tax , grandTotal } = calculateTotals(values.items)
 
     return (
         <div>
@@ -39,33 +33,34 @@ export function InvoicePreview() {
             <table>
                 <thead>
                     <tr>
-                        <th>Service Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Total</th>
+                    
+                        <th>Service Item</th> <br />
+                        <th>Qty</th> <br />
+                        <th>Price</th><br />
+                        <th>Total</th><br />
                     </tr>
                 </thead>
                 <tbody>
                     {values.items.map((item , index) => (
                         <tr key={item.id || index}>
+                            
                             <td>
-                                {item.title || 'Untitled'}
                                 {item.description}
-                            </td>
-                            <td>{item.quantity}</td>
-                            <td>${parseFloat(item.price || 0)}</td>
+                            </td><br />
+                            <td>{item.quantity}</td> <br />
+                            <td>${parseFloat(item.price || 0)}</td><br />
                             <td>
                                 ${(parseFloat(item.price || 0) * (parseFloat(item.quantity || 0))).toFixed(2)}
-                            </td>
+                            </td><br />
                         </tr>
                     ))}
                 </tbody>
             </table>
             <div>
-                <p>SubTotal : ${subTotal.toFixed(2)}</p>
-                <p>Tax : ${taxTotal.toFixed(2)}</p>
+                <p>SubTotal : <strong> ${subTotal.toFixed(2)} </strong></p>
+                <p>Tax : <strong> ${tax.toFixed(2)} </strong></p>
                 <br />
-                <h4>GrandTotal: ${grandTotal.toFixed(2)}</h4>
+                <h4>GrandTotal: <strong> ${grandTotal.toFixed(2)} </strong></h4>
             </div>
         </div>
     )

@@ -11,8 +11,9 @@ export function useFormLogics  (initialValue , storageKey) {
         if (!storageKey) return initialValue;
         try {
             const savedData = localStorage.getItem(storageKey);
-            return savedData ? {...savedData , ...JSON.parse(savedData) } : initialValue;
-
+            return savedData ? {...initialValue , ...JSON.parse(savedData) } : initialValue;
+            // ...initialValue => supplies every key with default Values
+            // ...savedData => Overwrites those default values
         } catch (err) {
             console.warn("Saved Data Was Un-Readable Setting Default " , err)
         }
