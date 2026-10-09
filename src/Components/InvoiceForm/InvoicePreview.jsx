@@ -62,9 +62,7 @@ export function InvoicePreview() {
                 <br />
                 <h4>GrandTotal: <strong> ${grandTotal.toFixed(2)} </strong></h4>
             </div>
-            <button 
-            className="print-btn"
-            onClick={() => window.print()}>Print</button>
+            
         </div>
     )
 }
