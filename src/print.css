@@ -1,0 +1,19 @@
+@media print {
+    body{
+        visibility: hidden;
+    }
+    .print-area{
+        visibility: visible;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+    @page {size: A4; margin: 12mm;}
+
+    tr{
+        break-inside: avoid;
+    }
+    .print-btn{
+        visibility: hidden;
+    }
+}

@@ -7,7 +7,7 @@ export function InvoicePreview() {
     const { subTotal , tax , grandTotal } = calculateTotals(values.items)
 
     return (
-        <div>
+        <div className="print-area">
             {/*Invoice Preview Header*/}
             <div>
                 <h2>Invoice Preview</h2>
@@ -62,6 +62,9 @@ export function InvoicePreview() {
                 <br />
                 <h4>GrandTotal: <strong> ${grandTotal.toFixed(2)} </strong></h4>
             </div>
+            <button 
+            className="print-btn"
+            onClick={() => window.print()}>Print</button>
         </div>
     )
 }
