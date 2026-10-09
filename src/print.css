@@ -1,19 +1,26 @@
+body {
+    background-color: #333;
+    color: #fff;
+}
 @media print {
     body{
         visibility: hidden;
+        background: white;
+        color: black;
     }
     .print-area{
         visibility: visible;
         position: absolute;
         top: 5px;
         left: 5px;
+        
+    .print-btn{
+            display: none;
+        }
+    }
     }
     @page {size: A4; margin: 12mm;}
 
     tr{
         break-inside: avoid;
     }
-    .print-btn{
-        visibility: hidden;
-    }
-}

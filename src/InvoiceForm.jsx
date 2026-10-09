@@ -1,7 +1,7 @@
-import ClientSelect from "./InvoiceForm/ClientSelect";
-import ServiceDetails from "./InvoiceForm/ServiceDetails";
-import TotalSummary from "./InvoiceForm/TotalSummary";
-import { InvoicePreview } from "./InvoiceForm/InvoicePreview";
+import ClientSelect from "./Components/InvoiceForm/ClientSelect";
+import ServiceDetails from "./Components/InvoiceForm/ServiceDetails";
+import TotalSummary from "./Components/InvoiceForm/TotalSummary";
+import { InvoicePreview } from "./Components/InvoiceForm/InvoicePreview";
 export default function InvoiceForm () {
 
     return(<>

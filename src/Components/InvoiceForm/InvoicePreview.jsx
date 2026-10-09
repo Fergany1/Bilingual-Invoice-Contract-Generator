@@ -1,5 +1,5 @@
-import { useForm } from "../Hooks/useForm";
-import { calculateTotals } from "../utils/calculateTotals";
+import { useForm } from "../../Hooks/useForm";
+import { calculateTotals } from "../../utils/calculateTotals";
 
 export function InvoicePreview() {
     const { values } = useForm();
