@@ -101,6 +101,16 @@ export default function ServiceDetails() {
                                 onChange={(e) => handleTableChange('items' , index , e)} />
 
                             </td>
+                            <td>
+                                <select name="unit" 
+                                value={item.unit} 
+                                onChange={(e) => handleTableChange('items' ,index , e)}>
+                                    <option value="hour">hour</option>
+                                    <option value="day">hour</option>
+                                    <option value="item">item</option>
+                                    <option value="project">project</option>
+                                </select>
+                            </td>
 
                             <td>
                                 <input type="text" 
