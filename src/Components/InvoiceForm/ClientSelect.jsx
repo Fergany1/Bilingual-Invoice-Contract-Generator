@@ -36,6 +36,17 @@ const ProviderForm = ({ onConfirm}) => {
                 <div>
                     <label>
                         <input 
+                        type="number" 
+                        onChange={handleChange} 
+                        name="providerNumber"
+                        value={values.providerNumber} 
+                        placeholder="Phone Number ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
                         type="text" 
                         onChange={handleChange} 
                         name="providerAddress" 
@@ -58,9 +69,9 @@ const ProviderForm = ({ onConfirm}) => {
                 <div>
                     <label>
                         <textarea 
-                        name="serviceCategory" 
+                        name="serviceDescription" 
                         onChange={handleChange} 
-                        value={values.serviceCategory}
+                        value={values.serviceDescription}
                         placeholder="Service Details ..."></textarea>
                     </label>
                 </div>
@@ -96,6 +107,28 @@ const ClientForm = ({ onConfirm }) => {
                         name="clientName" 
                         value={values.clientName}
                         placeholder="Full Name ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
+                        type="text" 
+                        onChange={handleChange} 
+                        name="companyName" 
+                        value={values.companyName}
+                        placeholder="Company Name ..." />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input 
+                        type="number" 
+                        onChange={handleChange} 
+                        name="clientNumber" 
+                        value={values.clientNumber}
+                        placeholder="Phone Number ..." />
                     </label>
                 </div>
 

@@ -24,25 +24,26 @@ export default function InvoiceForm () {
 
 
     return(<>
+        <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
         <ClientSelect /> <hr />
         <ServiceDetails /> <hr />
         <TotalSummary /> <hr /> <br />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-            
-            <button 
-            type="button"
-            onClick={() => window.print()}>
-                Print
-            </button>
-            <button
-            type="button"
-            onClick={handleDownload}>
-                Download PDF
-            </button>
-            <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
-            <div  className="print-area" ref={printRef}> 
-                <InvoicePreview />
-             </div>
+        {/**Invoice Preview And BTNs for Print & Download */}
+        <button 
+        type="button"
+        onClick={() => window.print()}>
+            Print
+        </button>
+        <button
+        type="button"
+        onClick={handleDownload}>
+            Download PDF
+        </button>
+        <div
+        style={{ display: 'flex', justifyContent: 'center', padding:'10px' }} 
+        className="print-area" ref={printRef}> 
+            <InvoicePreview />
         </div>
+        
     </>)
 }

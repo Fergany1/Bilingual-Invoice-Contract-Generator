@@ -1,4 +1,5 @@
 import { useForm } from "../../Hooks/useForm";
+import { addDays } from "../../utils/dates";
 
 export default function ServiceDetails() {
     const {
@@ -16,30 +17,40 @@ export default function ServiceDetails() {
         <div>
             <h2>Services Details</h2>
             <label>
-                <p>Date: </p>
+                {/* The Invoice Date the day the invoice being sent */}
+                <p>Issue Date: </p>
                 <input
                 type="date"
-                value={values.serviceDate}
-                name="serviceDate"
+                value={values.issueDate}
+                name="issueDate"
                 onChange={handleChange}
                 placeholder="Date DD/MM/YYYY"></input>
             </label>
             <label>
-                <p>Time: </p>
-                <input
-                name="serviceTime"
+                <p>Payment Due Date: </p>
+                <select
+                name="dueDate"
                 onChange={handleChange}
-                value={values.serviceTime}
-                placeholder="MM:HH:AM-MM:HH:AM"
-                ></input>
+                value={values.dueDate}
+                >
+                    <option value={0}>Due On Receipt</option>
+                    <option value={7}>Net 7 Days</option>
+                    <option value={14}>Net 14 Days</option>
+                    <option value={30}>Net 30 Days</option>
+                </select>
             </label>
             <label>
-                <p>Techinician: </p>
-                <input
-                name="technician"
+                <p>Currency: </p>
+                <select
+                name="currency"
                 onChange={handleChange}
-                value={values.technician}
-                placeholder="U Name ..."></input>
+                value={values.currency}
+                >
+                    <option value="EGP">EGP</option>
+                    <option value="USD">USD</option>
+                    <option value="SAR">SAR</option>
+                    <option value="AED">AED</option>
+                </select>
             </label>
         </div>
 
@@ -118,7 +129,7 @@ export default function ServiceDetails() {
                     type="button"
                     onClick={() => addTableRow
                         ('items' ,
-                        {id: Date.now() ,description: '' , quantity: 1 , price: 0})
+                        {id: Date.now() ,description: '' , quantity: 1 , price: 0 , unit: 'hour'})
                     }
                     >Add</button>
         </div>

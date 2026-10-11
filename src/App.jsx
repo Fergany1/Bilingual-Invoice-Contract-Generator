@@ -10,10 +10,35 @@ function App() {
 
   // Your existing completed invoice state shape
   const initialInvoiceValues = {
-    providerName: '', providerAddress: '', providerEmail: '', serviceCategory: '', hourlyRate: '',
-    clientName: '', shippingAddress: '', clientEmail: '',
-    items: [{ id: 1, title:'' , description: '', quantity: 1, price: 0 }],
-    serviceDate: '', serviceTime: '', technician: '', totalPrice: ''
+    
+    //Invoice Fixed Info
+    invoiceNumber: 1, issueDate: '',
+    dueDate: 14, currency:'EGP',
+
+    // Provider Info
+    providerName: '',providerNumber: '', providerAddress: '', providerEmail: '',
+    serviceDescription: '', 
+    
+    // Client Info
+    companyName: '',
+    clientName: '', clientNumber: '', shippingAddress: '',
+    clientEmail: '',
+
+    // Table-Services Info
+    items: [{ 
+      id: 1, title:'' , description: '',
+      quantity: 1, price: 0 ,
+      unit: 'hour' , 
+    }],
+
+    // Totals Settings
+    taxRate: 14,    
+    discount: 0,
+    amountPaid: 0,
+
+    // Payment
+    paymentMethod: '', paymentDetails: '' , notes:'',
+    
   };
 
   // 2. Your NEW contract state shape (Completely flat, no tables needed!)

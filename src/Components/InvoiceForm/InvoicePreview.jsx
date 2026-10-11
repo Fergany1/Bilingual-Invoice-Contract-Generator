@@ -1,5 +1,7 @@
 import { useForm } from "../../Hooks/useForm";
 import { calculateTotals } from "../../utils/calculateTotals";
+import { formatMoney } from "../../utils/formatMoney";
+import { addDays } from "../../utils/dates";
 
 export function InvoicePreview() {
     const { values } = useForm();
@@ -10,22 +12,24 @@ export function InvoicePreview() {
         <div className="print-area">
             {/*Invoice Preview Header*/}
             <div>
+                <p>INV - {values.invoiceNumber}</p>
                 <h2>Invoice Preview</h2>
+
                 <div>
-                    <p>Date : {values.serviceDate || '--/--/---- '}</p>
-                    <p>Technician : {values.technician || '-------------'}</p>
+                    <p>Date : {values.issueDate || '--/--/---- '}</p>
                 </div>
             </div>
             {/* Parties Context */}
             <div>
                 <div>
                     <h4>From (Provider)</h4>
-                    <p>{values.providerName || 'N/A'}</p>
+                    <p>{values.providerName || '---------'}</p>
                     <p>{values.providerEmail}</p>
                 </div>
                 <div>
                     <h4>Bill To (Client)</h4>
-                    <p>{values.clientName || 'N/A'}</p>
+                    <p>{values.clientName || '----------'}</p>
+                    <p>{values.companyNumber || '---------'}</p>
                     <p>{values.clientEmail}</p>
                 </div>
             </div>
@@ -33,11 +37,11 @@ export function InvoicePreview() {
             <table>
                 <thead>
                     <tr>
-                    
-                        <th>Service Item</th> <br />
-                        <th>Qty</th> <br />
-                        <th>Price</th><br />
-                        <th>Total</th><br />
+                        <th>Item Title</th> 
+                        <th>Service Item</th> 
+                        <th>Qty</th> 
+                        <th>Price</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,13 +49,16 @@ export function InvoicePreview() {
                         <tr key={item.id || index}>
                             
                             <td>
-                                {item.description}
-                            </td><br />
-                            <td>{item.quantity}</td> <br />
-                            <td>${parseFloat(item.price || 0)}</td><br />
+                                {item.title || '------------'}
+                            </td> 
                             <td>
-                                ${(parseFloat(item.price || 0) * (parseFloat(item.quantity || 0))).toFixed(2)}
-                            </td><br />
+                                {item.description || '--------------'}
+                            </td>
+                            <td>{item.quantity} {item.unit} </td> 
+                            <td>{formatMoney(item.price , values.currency)}</td>
+                            <td>
+                                {formatMoney(item.subTotal , values.currency)}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -61,6 +68,8 @@ export function InvoicePreview() {
                 <p>Tax : <strong> ${tax.toFixed(2)} </strong></p>
                 <br />
                 <h4>GrandTotal: <strong> ${grandTotal.toFixed(2)} </strong></h4>
+                <p>Issue-Date: {values.issueDate}</p>
+                <p>Due-Date: {addDays(values.issueDate , values.dueDate)}</p>
             </div>
             
         </div>

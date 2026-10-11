@@ -3,24 +3,21 @@ body {
     color: #fff;
 }
 @media print {
-    body{
-        visibility: hidden;
-        background: white;
-        color: black;
-    }
-    .print-area{
+    body * { visibility: hidden; }
+    .print-area , .print-area * {
         visibility: visible;
+    }
+    .print-area { 
         position: absolute;
         top: 5px;
         left: 5px;
-        
-    .print-btn{
-            display: none;
-        }
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 24px;
+        font-weight: 600;
+        background: #fff;
+        color: #000;
     }
-    }
+    tr{ break-inside: avoid;}
+    
+}
     @page {size: A4; margin: 12mm;}
-
-    tr{
-        break-inside: avoid;
-    }
