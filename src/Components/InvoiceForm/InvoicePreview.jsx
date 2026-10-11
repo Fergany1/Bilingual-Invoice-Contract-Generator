@@ -2,6 +2,7 @@ import { useForm } from "../../Hooks/useForm";
 import { calculateTotals } from "../../utils/calculateTotals";
 import { formatMoney } from "../../utils/formatMoney";
 import { addDays } from "../../utils/dates";
+import { PaymentDetails } from "./PaymentDetails";
 
 export function InvoicePreview() {
     const { values } = useForm();
@@ -87,6 +88,18 @@ export function InvoicePreview() {
                 <p>Issue-Date: {values.issueDate}</p>
                 <p>Due-Date: {addDays(values.issueDate , values.dueDate)}</p>
             </div>
+            <hr />
+            {values.paymentDetails && (
+                <div>
+                    <h4>How To Pay</h4>
+                    <p>{values.paymentMethod}</p>
+                    <p
+                    style={{ whiteSpace: 'pre-line'}}>
+                        {values.paymentDetails}
+                    </p>
+                </div>
+            )}
+            {values.notes && <p style={{ whiteSpace: 'pre-line'}}>{values.notes}</p>}
             
         </div>
     )

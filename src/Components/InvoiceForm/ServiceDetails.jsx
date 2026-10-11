@@ -1,5 +1,6 @@
 import { useForm } from "../../Hooks/useForm";
 import { addDays } from "../../utils/dates";
+import { PaymentDetails } from "./PaymentDetails";
 
 export default function ServiceDetails() {
     const {
@@ -142,6 +143,7 @@ export default function ServiceDetails() {
                         {id: Date.now() ,description: '' , quantity: 1 , price: 0 , unit: 'hour'})
                     }
                     >Add</button>
+
         </div>
     )
 }
