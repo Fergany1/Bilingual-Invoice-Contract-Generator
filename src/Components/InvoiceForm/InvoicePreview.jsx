@@ -6,7 +6,23 @@ import { addDays } from "../../utils/dates";
 export function InvoicePreview() {
     const { values } = useForm();
 
-    const { subTotal , tax , grandTotal } = calculateTotals(values.items)
+    const {         
+        lines,
+        subTotal,
+        discountAmount,
+        taxable,
+        tax,
+        grandTotal,
+        balanceDue 
+    } = calculateTotals(
+        values.items,
+        {
+            taxRate: values.taxRate,
+            discount: values.discount,
+            amountPaid: values.amountPaid
+        
+        }
+    );
 
     return (
         <div className="print-area">

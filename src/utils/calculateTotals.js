@@ -1,17 +1,30 @@
-export function calculateTotals(items , taxRate = 0.10) {
-    // 1. Get the sub-total using reduce()
-    const subTotal = items.reduce((accumulator , item) => {
-        // convert str -> Num OR Default to 0 if empty
-        const currentPrice = parseFloat(item.price) || 0;
-        const currentQuantity = parseFloat(item.quantity) || 0;
+// Two Helpers
+const toNum = (v) => parseFloat(v) || 0; // convert str to number
+const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100; // rounds to 2 decimal places 
 
-        // price * quantity and adds it up to accumulator
-        return accumulator + (currentPrice * currentQuantity)
-    } , 0)
+export function calculateTotals(items , {taxRate = 0 , discount = 0 , amountPaid = 0} = {}) {
+    const lines = items.map((item) => ({
+        ...item,
+        lineTotal: round2(toNum(item.quantity) * toNum(item.price))
+    }));
 
-    // 2. get estimated Tax 10%
-    const tax = subTotal * taxRate;
-    const grandTotal = tax + subTotal;
+    // reduce() adds up list , starts at 0 then add each line to the sum
+    const subTotal = round2(lines.reduce((sum , l) => sum + l.lineTotal , 0));
+    
+    const discountAmount = Math.min(round2(toNum(discount)) , subTotal);
+    const taxable = round2(subTotal - discountAmount);
+    const tax = round2((taxable * toNum(taxRate)) / 100); // to get the numeric value of the tax percent(14%)
 
-    return{ subTotal , tax , grandTotal}
+    const grandTotal = round2(taxable + tax);
+    const balanceDue = round2(grandTotal - toNum(amountPaid));
+
+    return{
+        lines,
+        subTotal,
+        discountAmount,
+        taxable,
+        tax,
+        grandTotal,
+        balanceDue
+    }
 }
