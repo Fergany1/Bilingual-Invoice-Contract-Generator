@@ -139,7 +139,12 @@ export default function ServiceDetails() {
                     type="button"
                     onClick={() => addTableRow
                         ('items' ,
-                        {id: Date.now() ,description: '' , quantity: 1 , price: 0 , unit: 'hour'})
+                        {id: Date.now() ,
+                            title: '' ,
+                            description: '' ,
+                            quantity: 1 , 
+                            price: 0 , 
+                            unit: 'hour'})
                     }
                     >Add</button>
 
