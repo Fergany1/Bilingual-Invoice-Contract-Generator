@@ -36,7 +36,7 @@ const ProviderForm = ({ onConfirm}) => {
                 <div>
                     <label>
                         <input 
-                        type="number" 
+                        type="tel" 
                         onChange={handleChange} 
                         name="providerNumber"
                         value={values.providerNumber} 
@@ -124,7 +124,7 @@ const ClientForm = ({ onConfirm }) => {
                 <div>
                     <label>
                         <input 
-                        type="number" 
+                        type="tel" 
                         onChange={handleChange} 
                         name="clientNumber" 
                         value={values.clientNumber}
