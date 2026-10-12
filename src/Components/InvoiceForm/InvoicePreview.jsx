@@ -46,7 +46,7 @@ export function InvoicePreview() {
                 <div>
                     <h4>Bill To (Client)</h4>
                     <p>{values.clientName || '----------'}</p>
-                    <p>{values.companyNumber || '---------'}</p>
+                    <p>{values.companyName || '---------'}</p>
                     <p>{values.clientEmail}</p>
                 </div>
             </div>
@@ -62,7 +62,7 @@ export function InvoicePreview() {
                     </tr>
                 </thead>
                 <tbody>
-                    {values.items.map((item , index) => (
+                    {lines.map((item , index) => (
                         <tr key={item.id || index}>
                             
                             <td>
@@ -73,20 +73,27 @@ export function InvoicePreview() {
                             </td>
                             <td>{item.quantity} {item.unit} </td> 
                             <td>{formatMoney(item.price , values.currency)}</td>
-                            <td>
-                                {formatMoney(item.subTotal , values.currency)}
+                            <td> 
+                                {formatMoney(item.lineTotal , values.currency)}
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <div>
-                <p>SubTotal : <strong> ${subTotal.toFixed(2)} </strong></p>
-                <p>Tax : <strong> ${tax.toFixed(2)} </strong></p>
+                <p>Sub-Total: <strong>{formatMoney(subTotal , values.currency)}</strong></p>
+                <p>Tax ({values.taxRate}%): <strong>{formatMoney(tax , values.currency)}</strong></p>
+                {discountAmount > 0 && (
+                <p>Discount: <strong>-{formatMoney(discountAmount, values.currency)}</strong></p>
+                )}
                 <br />
-                <h4>GrandTotal: <strong> ${grandTotal.toFixed(2)} </strong></h4>
-                <p>Issue-Date: {values.issueDate}</p>
-                <p>Due-Date: {addDays(values.issueDate , values.dueDate)}</p>
+                <h3>Total: <strong>{formatMoney(grandTotal , values.currency)}</strong></h3>
+                {parseFloat(values.amountPaid) > 0 && (
+                <p>Paid: <strong>{formatMoney(values.amountPaid , values.currency)}</strong></p>
+                )}
+                <h3>Balance Due: <strong>{formatMoney(balanceDue , values.currency)}</strong></h3>
+                <p>Issue-Date:<strong>{values.issueDate}</strong></p>
+                <p>Due-Date: <strong>{addDays(values.issueDate , values.dueDate)}</strong></p>
             </div>
             <hr />
             {values.paymentDetails && (

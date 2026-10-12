@@ -1,6 +1,4 @@
 import { useForm } from "../../Hooks/useForm";
-import { addDays } from "../../utils/dates";
-import { PaymentDetails } from "./PaymentDetails";
 
 export default function ServiceDetails() {
     const {
@@ -64,6 +62,7 @@ export default function ServiceDetails() {
                         <th>Title</th>
                         <th>Description</th>    
                         <th>Quantity</th>    
+                        <th>Unit</th>    
                         <th>Price</th>    
                         <th></th>
                     </tr>    
@@ -107,7 +106,7 @@ export default function ServiceDetails() {
                                 value={item.unit} 
                                 onChange={(e) => handleTableChange('items' ,index , e)}>
                                     <option value="hour">hour</option>
-                                    <option value="day">hour</option>
+                                    <option value="day">day</option>
                                     <option value="item">item</option>
                                     <option value="project">project</option>
                                 </select>
