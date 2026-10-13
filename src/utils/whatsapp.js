@@ -17,7 +17,7 @@ export function buildInvoiceMessage ({
     return [
         `Hello ${clientName},`,
         `Find Invoice INV-${invoiceNumber} For ${total}.`,
-        dueDate ? `Due-Data: ${dueDate}.` : "",
+        dueDate ? `Due-Date: ${dueDate}.` : "",
         'Thank U , ',
         providerName,
     ].filter(Boolean).join("\n")

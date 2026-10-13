@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from '../../Hooks/useForm'
+import { useClients } from "../../Hooks/useClients";
  
 
 const ProviderForm = ({ onConfirm}) => {
@@ -83,7 +84,10 @@ const ProviderForm = ({ onConfirm}) => {
 }
 
 const ClientForm = ({ onConfirm }) => {
-    const { values , handleChange } = useForm()
+    const { values , handleChange } = useForm();
+
+    const { addClient } = useClients();
+
     
     
     const handleConfirm = (e) => {
@@ -153,6 +157,16 @@ const ClientForm = ({ onConfirm }) => {
                         placeholder="Address Details ..." />
                     </label>
                 </div>
+                <button
+                type="button"
+                onClick={() => addClient({
+                    name: values.clientName,
+                    company: values.companyName,
+                    phone: values.clientNumber,
+                    email: values.clientEmail
+                })}>
+                    Save Client
+                </button>
                 <button type="submit">Submit</button>
             </form>
         </div>
