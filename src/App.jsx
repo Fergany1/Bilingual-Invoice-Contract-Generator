@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { ContextProvider } from './Hooks/useForm'
 import ContractForm from './Components/ContractForm/ContractForm'
 import InvoiceForm from './InvoiceForm'
-import Scratch from './scratch'
 
 
 function App() {

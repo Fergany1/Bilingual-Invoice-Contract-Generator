@@ -1,6 +1,6 @@
 // Two Helpers
-const toNum = (v) => parseFloat(v) || 0; // convert str to number
-const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100; // rounds to 2 decimal places 
+export const toNum = (v) => parseFloat(v) || 0; // convert str to number
+export const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100; // rounds to 2 decimal places 
 
 export function calculateTotals(items , {taxRate = 0 , discount = 0 , amountPaid = 0} = {}) {
     const lines = items.map((item) => ({
@@ -25,6 +25,7 @@ export function calculateTotals(items , {taxRate = 0 , discount = 0 , amountPaid
         taxable,
         tax,
         grandTotal,
-        balanceDue
+        balanceDue,
+        toNum
     }
 }
