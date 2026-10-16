@@ -159,14 +159,15 @@ const ClientForm = ({ onConfirm }) => {
                 </div>
                 <button
                 type="button"
-                onClick={() => addClient({
+                onClick={() => {
+                    console.log("Clicked")
+                    addClient({
                     name: values.clientName,
                     company: values.companyName,
                     phone: values.clientNumber,
                     email: values.clientEmail,
-                }),
-                 console.log("saving" , values.clientName)
-                }>
+                })
+                console.log("addClient Called")}}>
                     Save Client
                 </button>
                 <button type="submit">Submit</button>
