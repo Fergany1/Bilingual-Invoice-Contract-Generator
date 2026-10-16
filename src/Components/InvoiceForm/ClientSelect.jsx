@@ -163,8 +163,10 @@ const ClientForm = ({ onConfirm }) => {
                     name: values.clientName,
                     company: values.companyName,
                     phone: values.clientNumber,
-                    email: values.clientEmail
-                })}>
+                    email: values.clientEmail,
+                }),
+                 console.log("saving" , values.clientName)
+                }>
                     Save Client
                 </button>
                 <button type="submit">Submit</button>

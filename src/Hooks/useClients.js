@@ -10,7 +10,12 @@ export function useClients() {
         localStorage.setItem('saved_clients' , JSON.stringify(clients));
     } , [clients]);
 
-    const addClient = (c) => {setClients((prev) => [...prev , {id: Date.now()  , ...c}])};
+    const addClient = (c) => {
+        setClients((prev) =>
+            prev.some((x) => x.phone === c.phone)
+            ? prev
+            : [...prev , {id: Date.now()  , ...c}])
+    };
     const removeClient = (id) => {setClients((prev) => prev.filter((c) => c.id !== id));}
 
     return { clients , addClient , removeClient};

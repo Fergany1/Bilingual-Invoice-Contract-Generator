@@ -34,7 +34,7 @@ export default function InvoiceForm () {
     const pdfOptions = {
         margin: 10,
         filename: "invoice.pdf",
-        html2canvas: { scale: 2} ,
+        html2canvas: { scale: 2 , scrollY: 0 } ,
         jsPDF: { format : 'a4'}, 
     };
 
