@@ -5,13 +5,13 @@ import { PaymentDetails } from "./Components/InvoiceForm/PaymentDetails";
 import { InvoicePreview } from "./Components/InvoiceForm/InvoicePreview";
 import { useRef, useState } from "react";
 import html2pdf from 'html2pdf.js';
-import { validateInvoice } from "./utils/validateInvoice";
-import { useForm } from "./Hooks/useForm";
+import { validate } from "./utils/validateInvoice";
 import { SharePicker } from "./Components/Shared/SharePicker";
-import { buildInvoiceMessage, buildWhatsAppUrl , cleanPhone } from "./utils/whatsapp";
+import { buildInvoiceMessage, buildWhatsAppUrl  } from "./utils/whatsapp";
 import { formatMoney } from "./utils/formatMoney";
 import { calculateTotals } from "./utils/calculateTotals";
 import { addDays } from "./utils/dates";
+import DocumentActions from "./Components/Shared/DocumentActions";
 
 
 export default function InvoiceForm () {
@@ -21,71 +21,13 @@ export default function InvoiceForm () {
         discount: values.discount,
         amountPaid: values.amountPaid,
     });
-    const [ errors , setErrors ] = useState([])
-    const [ showPicker , setShowPicker] = useState(false)
     const printRef = useRef(null);
 
-    const guard = (action) => () => {
-        const found = validateInvoice(values);
-        setErrors(found);
-        if( found.length === 0) action();
-    }
-
-    const pdfOptions = {
-        margin: 10,
-        filename: "invoice.pdf",
-        html2canvas: { scale: 2 , scrollY: 0 } ,
-        jsPDF: { format : 'a4'}, 
-    };
-
-    const handleDownload = () => {
-        html2pdf()
-            .set(pdfOptions)
-            .from(printRef.current)
-            .save()
-        
-    };
-
-    const handleShareFile = async () => {
-        const blob = await html2pdf()
-            .set(pdfOptions)
-            .from(printRef.current)
-            .outputPdf("blob");
-
-        const file = new File([blob],
-            `invoice-${values.invoiceNumber}.pdf` , {
-            type: "application/pdf",
-        });
-
-        const message = `invoice INV-${values.invoiceNumber}`;
-
-        if( navigator.canShare?.({ files: [file] })) {
-            try {
-                await navigator.share({ files: [file] , text: message});
-            } catch (err) {
-                if (err.name !== "AbortError") console.error(err);
-            }
-        } else {
-            alert("File Sharing isn't Supported Here , Use Download PDF Instead")
-        }
-    };
-
-
-    const handlePick = (client) => {
-        const message = buildInvoiceMessage({
-            clientName: client.name,
-            invoiceNumber: values.invoiceNumber,
-            total: formatMoney(grandTotal , values.currency),
-            dueDate: addDays(values.issueDate , values.dueDate),
-            providerName: values.providerName,
-        });
-
-        window.open(buildWhatsAppUrl(client.phone , message) , "_blank");
-        handleDownload();
-        setShowPicker(false);
-    };
-
-
+    
+    
+    
+    
+    
     return(<>
         <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
         <ClientSelect /> <hr />
@@ -93,32 +35,19 @@ export default function InvoiceForm () {
         <PaymentDetails /> <hr />
         <TotalSummary /> <hr /> <br />
         {/**Invoice Preview And BTNs for Print & Download */}
-        <button 
-        type="button"
-        onClick={guard(() => window.print())}>
-            Print
-        </button> 
-        <br />
-        <button
-        type="button"
-        onClick={guard(handleDownload)}>
-            Download PDF
-        </button>
-        <br />
-        <button type="button" onClick={guard(() => setShowPicker(true))}>
-            Share Via WhatsApp 
-        </button>
-        <button type="button" onClick={guard(handleShareFile)}>
-            Share a PDF(Mobile 📲)
-        </button>
-            {showPicker && <SharePicker onPick={handlePick} onClose={() => setShowPicker(false)} />}
-        {errors.length > 0 && (
-            <ul>
-                {errors.map((e) => 
-                    <li key={e}> {e} </li>
-                )}
-            </ul>
-        )}
+        <DocumentActions 
+            targetRef={printRef}
+            fileName={`invoice-${values.invoiceNumber}`}
+            validate={() => validate(values)}
+            buildMessage={(client) => buildInvoiceMessage({
+                clientName: client.name,
+                invoiceNumber: values.invoiceNumber,
+                total: formatMoney(grandTotal , values.currency),
+                dueDate: addDays(values.issueDate , values.dueDate),
+                providerName: values.providerName,
+            })}
+            />
+
         <div
         style={{ display: 'flex', justifyContent: 'center', padding:'10px' }} 
         className="print-area" ref={printRef}> 

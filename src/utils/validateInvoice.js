@@ -1,4 +1,4 @@
-export function validateInvoice(values) {
+export function validate(values) {
     const errors = [];
     if(!values.providerName.trim()) errors.push("Provider Name is Required !");
     if(!values.clientName.trim()) errors.push("Client Name is Required !");
