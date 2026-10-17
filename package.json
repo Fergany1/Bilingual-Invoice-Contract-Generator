@@ -1,5 +1,6 @@
 {
   "name": "bilingual-invoice-contract-generator",
+  "homepage": "https://Fergany1.githup.io/Bilingual-Invoice-Contract-Generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "html2pdf.js": "^0.14.0",
