@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ContextProvider } from './Hooks/useForm'
 import ContractForm from './Components/ContractForm/ContractForm'
-import InvoiceForm from './InvoiceForm'
+import InvoiceForm from './Components/InvoiceForm/InvoiceForm'
 
 
 function App() {

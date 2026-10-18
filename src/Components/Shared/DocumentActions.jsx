@@ -21,7 +21,7 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
         if (found.length === 0) action();
     };
 
-    const download = () => {
+    const download = async () => {
         await document.fonts.ready;
         return html2pdf().set(pdfOptions)
                 .from(targetRef.current).save();

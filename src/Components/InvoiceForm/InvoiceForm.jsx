@@ -1,18 +1,18 @@
-import ClientSelect from "./Components/InvoiceForm/ClientSelect";
-import ServiceDetails from "./Components/InvoiceForm/ServiceDetails";
-import TotalSummary from "./Components/InvoiceForm/TotalSummary";
-import { PaymentDetails } from "./Components/InvoiceForm/PaymentDetails";
-import { InvoicePreview } from "./Components/InvoiceForm/InvoicePreview";
+import ClientSelect from "./ClientSelect";
+import ServiceDetails from "./ServiceDetails";
+import TotalSummary from "./TotalSummary";
+import { PaymentDetails } from "./PaymentDetails";
+import { InvoicePreview } from "./InvoicePreview";
 import { useRef, useState } from "react";
 import html2pdf from 'html2pdf.js';
-import { validate } from "./utils/validateInvoice";
-import { SharePicker } from "./Components/Shared/SharePicker";
-import { useForm } from "./Hooks/useForm";
-import { buildInvoiceMessage, buildWhatsAppUrl  } from "./utils/whatsapp";
-import { formatMoney } from "./utils/formatMoney";
-import { calculateTotals } from "./utils/calculateTotals";
-import { addDays } from "./utils/dates";
-import { DocumentActions } from "./Components/Shared/DocumentActions";
+import { validate } from "../../utils/validateInvoice";
+import { SharePicker } from "../Shared/SharePicker";
+import { useForm } from "../../Hooks/useForm";
+import { buildInvoiceMessage, buildWhatsAppUrl  } from "../../utils/whatsapp";
+import { formatMoney } from "../../utils/formatMoney";
+import { calculateTotals } from "../../utils/calculateTotals";
+import { addDays } from "../../utils/dates";
+import { DocumentActions } from "../Shared/DocumentActions";
 
 
 export default function InvoiceForm () {
