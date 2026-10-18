@@ -12,7 +12,7 @@ import { buildInvoiceMessage, buildWhatsAppUrl  } from "./utils/whatsapp";
 import { formatMoney } from "./utils/formatMoney";
 import { calculateTotals } from "./utils/calculateTotals";
 import { addDays } from "./utils/dates";
-import DocumentActions from "./Components/Shared/DocumentActions";
+import { DocumentActions } from "./Components/Shared/DocumentActions";
 
 
 export default function InvoiceForm () {
