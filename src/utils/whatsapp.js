@@ -22,3 +22,12 @@ export function buildInvoiceMessage ({
         providerName,
     ].filter(Boolean).join("\n")
 }
+
+export function buildContractMessage({ clientName , providerName}){
+    return [
+        'Hello ${clientName},',
+        "Please Find The Contract For You Review And Signature.",
+        "Thank You,",
+        providerName,
+    ].filter(Boolean).join("\n");
+}
