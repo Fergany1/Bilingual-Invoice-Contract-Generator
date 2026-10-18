@@ -33,7 +33,7 @@ export function InvoicePreview() {
             {/*Invoice Preview Header*/}
             <div>
                 <p>{t.number} - {values.invoiceNumber}</p>
-                <h2>Invoice Preview</h2>
+                <h2>{t.title}</h2>
 
                 <div>
                     <p>{t.date} : {values.issueDate || '--/--/---- '}</p>
@@ -42,12 +42,12 @@ export function InvoicePreview() {
             {/* Parties Context */}
             <div>
                 <div>
-                    <h4>{t.from} (Provider)</h4>
+                    <h4>{t.from}</h4>
                     <p>{values.providerName || '---------'}</p>
                     <p>{values.providerEmail}</p>
                 </div>
                 <div>
-                    <h4>{t.billto} (Client)</h4>
+                    <h4>{t.billto}</h4>
                     <p>{values.clientName || '----------'}</p>
                     <p>{values.companyName || '---------'}</p>
                     <p>{values.clientEmail}</p>
