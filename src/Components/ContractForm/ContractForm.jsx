@@ -1,7 +1,7 @@
 import { useForm } from "../../Hooks/useForm";
 import { useRef } from "react";
 import { ContractPreview } from "./ContractPreview";
-import DocumentActions from "../Shared/DocumentActions";
+import { DocumentActions } from "../Shared/DocumentActions";
 import { validateContract } from "../../utils/validateContract";
 import { buildContractMessage } from "../../utils/whatsapp";
 

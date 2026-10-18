@@ -31,7 +31,7 @@ export function ContractPreview(){
             {values.paymentTerms && (
             <>
                 <h4>Payment Terms</h4>
-                <p>{values.paymentTerms}</p>
+                <p style={{ whiteSpace: "pre-line" }}>{values.paymentTerms}</p>
             </>
             )}
 
@@ -39,7 +39,7 @@ export function ContractPreview(){
             {values.terminationClause && (
             <>
                 <h4>Termination Terms</h4>
-                <p>{values.terminationClause}</p>
+                <p style={{ whiteSpace: "pre-line" }}>{values.terminationClause}</p>
             </>
             )}
 
