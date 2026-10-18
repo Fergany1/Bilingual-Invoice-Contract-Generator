@@ -1,6 +1,6 @@
 import { useForm } from "../../Hooks/useForm"
 
-export function ContractPerview(){
+export function ContractPreview(){
 
     const { values } = useForm()
     return (

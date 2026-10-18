@@ -1,18 +1,20 @@
 import { useForm } from "../../Hooks/useForm";
+import { useRef } from "react";
+import { ContractPreview } from "./ContractPreview";
+import DocumentActions from "../Shared/DocumentActions";
+import { validateContract } from "../../utils/validateContract";
+import { buildContractMessage } from "../../utils/whatsapp";
 
 export default function ContractForm() {
     const { values , handleChange } = useForm()
+    const printRef = useRef(null)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log("Final Contract Form Payload Collected:", values);
-    }
 
      return (
         <div>
             <h2>Create Legal Contract</h2>
             
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => e.preventDefault()}>
                 {/* 1. Basic Metadata Fields */}
                 <div>
                     <div>
@@ -93,10 +95,26 @@ export default function ContractForm() {
                     </label>
                 </div>
 
-                <button>
-                    Generate Legal Contract
-                </button>
             </form>
+            <DocumentActions
+                targetRef={printRef}
+                fileName={`contract-${values.contractNumber}`}
+                validate={() => validateContract(values)}
+                buildMessage={(client) =>
+                    buildContractMessage({
+                    clientName: client.name,
+                    providerName: values.contractProvider,
+                    })
+                }
+                />
+
+            <div
+            className="print-area"
+            ref={printRef}
+            style={{ display: "flex", justifyContent: "center", padding: "10px", background: "#fff", color: "#000" }}
+            >
+            <ContractPreview />
+            </div>
         </div>
     );
 }
