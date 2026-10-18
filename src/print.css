@@ -9,6 +9,9 @@ body {
 }
 
 @media print {
+    [dir="rtl"] {
+        font-family: "Cairo" , sans-serif;
+    }
     body * { visibility: hidden; }
     .print-area , .print-area * {
         visibility: visible;

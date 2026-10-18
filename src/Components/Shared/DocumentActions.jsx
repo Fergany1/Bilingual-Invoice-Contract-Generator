@@ -21,8 +21,11 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
         if (found.length === 0) action();
     };
 
-    const download = () => html2pdf().set(pdfOptions)
-                        .from(targetRef.current).save();
+    const download = () => {
+        await document.fonts.ready;
+        return html2pdf().set(pdfOptions)
+                .from(targetRef.current).save();
+    }
     
     const shareFile = async () => {
         const blob = await html2pdf().set(pdfOptions)
