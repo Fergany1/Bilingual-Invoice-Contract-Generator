@@ -57,8 +57,7 @@ export default function DocumentActions({buildMessage , targetRef , fileName ,va
             {showPicker && <SharePicker onPick={pick} onClose={() => setShowPicker(false)} />}
             {errors.length > 0 && 
             <ul>
-                {errors.map((e) => 
-                <li key={e}>
+                {errors.map((e) => <li key={e}>
                     {e}
                 </li>)}    
             </ul>}

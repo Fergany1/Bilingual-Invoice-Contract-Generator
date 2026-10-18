@@ -69,6 +69,16 @@ export default function ContractForm() {
                         rows="3"
                     />
                 </div>
+                <div>
+                    <label>Termination Clause</label>
+                    <textarea
+                        name="terminationClause"
+                        value={values.terminationClause}
+                        onChange={handleChange}
+                        placeholder="Ex: Either party may terminate with 7 days' written notice. Work completed up to that date will be paid for..."
+                        rows="3"
+                    />
+                </div>
 
                 {/* 3. Checkbox Validation */}
                 <div>
