@@ -43,6 +43,7 @@ function App() {
 
   // 2. Your NEW contract state shape (Completely flat, no tables needed!)
   const initialContractValues = {
+    contractNum: 1,
     contractDate: '',
     contractProvider: '',
     contractClient: '',

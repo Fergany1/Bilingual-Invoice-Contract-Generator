@@ -26,7 +26,7 @@ export function InvoicePreview() {
     );
 
     return (
-        <div className="print-area">
+        <div>
             {/*Invoice Preview Header*/}
             <div>
                 <p>INV - {values.invoiceNumber}</p>
