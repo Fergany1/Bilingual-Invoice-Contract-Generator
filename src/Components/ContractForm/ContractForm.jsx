@@ -17,6 +17,13 @@ export default function ContractForm() {
             <form onSubmit={(e) => e.preventDefault()}>
                 {/* 1. Basic Metadata Fields */}
                 <div>
+                    <label>
+                        Document Language
+                        <select name="lang" value={values.lang} onChange={handleChange}>
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </label>
                     <div>
                         <label>Contract Date</label>
                         <input 

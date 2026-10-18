@@ -16,7 +16,7 @@ import DocumentActions from "./Components/Shared/DocumentActions";
 
 
 export default function InvoiceForm () {
-    const { values } = useForm()
+    const { values , handleChange } = useForm()
     const { grandTotal } = calculateTotals(values.items , {
         taxRate: values.taxRate,
         discount: values.discount,
@@ -32,6 +32,13 @@ export default function InvoiceForm () {
     return(<>
         <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
         <ClientSelect /> <hr />
+        <label>
+            Document Language
+            <select name="lang" value={values.lang} onChange={handleChange}>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </label>
         <ServiceDetails /> <hr />
         <PaymentDetails /> <hr />
         <TotalSummary /> <hr /> <br />

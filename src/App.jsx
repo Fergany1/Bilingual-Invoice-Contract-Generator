@@ -38,6 +38,9 @@ function App() {
 
     // Payment
     paymentMethod: '', paymentDetails: '' , notes:'',
+
+    // Languages
+    lang: 'en',
     
   };
 
@@ -50,7 +53,8 @@ function App() {
     scopeOfWork: '',
     paymentTerms: '',
     terminationClause: '',
-    isAgreed: false // Checkbox boolean
+    isAgreed: false, // Checkbox boolean
+    lang: 'en',
   };
 
   return (
