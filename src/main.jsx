@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './styles/print.css'
 import './styles/document.css'
+import './styles/app.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -32,13 +32,6 @@ export default function InvoiceForm () {
     return(<>
         <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
         <ClientSelect /> <hr />
-        <label>
-            Document Language
-            <select name="lang" value={values.lang} onChange={handleChange}>
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
-        </label>
         <ServiceDetails /> <hr />
         <PaymentDetails /> <hr />
         <TotalSummary /> <hr /> <br />
@@ -56,6 +49,13 @@ export default function InvoiceForm () {
             })}
             />
 
+            <label>
+                Document Language
+                <select name="lang" value={values.lang} onChange={handleChange}>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </label>
         <div className="print-area" ref={printRef}> 
             <InvoicePreview />
         </div>

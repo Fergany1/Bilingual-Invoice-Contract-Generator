@@ -6,7 +6,7 @@ export function addDays(dateString , days) {
 }
 
 export function formatDate(iso) {
-  if (!iso) return "--/--/----";
+  if (typeof value !== "string" || !value.includes("-")) return "--/--/----";
   const [y, m, d] = iso.split("-");
   return `${d}/${m}/${y}`;
 }

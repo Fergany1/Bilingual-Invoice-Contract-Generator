@@ -58,24 +58,29 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto' }}>
-      <h1>Document Generator Platform</h1>
+    <div className='app'>
+      <header className='app-header'>
+        <h1>Document Generator</h1>
+        <p>Create Bilingual Invoices & Contracts, Then Print , Download Or Share Them.</p>
+      </header>
       
       {/* Tab Navigation Buttons */}
-      <div style={{ marginBottom: '30px', display: 'flex', gap: '10px' }}>
+      <nav className='tabs'>
         <button 
+          type='button'
+          className={currentTab === 'invoice' ? 'tab active' : 'tab'}
           onClick={() => setCurrentTab('invoice')}
-          style={{ backgroundColor: currentTab === 'invoice' ? '#007bff' : '#ccc', color: 'white' }}
         >
-          Invoice Generator
+          Invoice 
         </button>
         <button 
+          type='button'
+          className={currentTab === 'contract' ? 'tab active' : 'tab'}
           onClick={() => setCurrentTab('contract')}
-          style={{ backgroundColor: currentTab === 'contract' ? '#007bff' : '#ccc', color: 'white' }}
         >
-          Contract Generator
+          Contract 
         </button>
-      </div>
+      </nav>
 
       {/* Render the forms inside their own isolated Context Providers */}
       {currentTab === 'invoice' ? (
