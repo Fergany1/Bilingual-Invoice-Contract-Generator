@@ -43,7 +43,7 @@ export function InvoicePreview() {
                 </div>
                 <div className="doc-meta">
                     <p><span>{t.issueDate}</span><bdi>{formatDate(values.issueDate)}</bdi></p>
-                    <p><span>{t.dueDate}</span><bdi>{formatDate(values.dueDate)}</bdi></p>
+                    <p><span>{t.dueDate}</span><bdi>{formatDate(dueDate)}</bdi></p>
                 </div>
             </header>
 

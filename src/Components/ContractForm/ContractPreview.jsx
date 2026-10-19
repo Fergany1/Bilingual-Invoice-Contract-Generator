@@ -1,63 +1,65 @@
-import { useForm } from "../../Hooks/useForm"
-import { translations } from "../../i18n/translations";
+import { useForm } from "../../Hooks/useForm";
 import { formatDate } from "../../utils/dates";
+import { translations } from "../../i18n/translations";
 
-export function ContractPreview(){
+export function ContractPreview() {
+  const { values } = useForm();
+  const lang = values.lang || "en";
+  const t = translations[lang].contract;
 
-    const { values } = useForm();
-    const lang = values.lang || "en";
-    const t = translations[lang].contract;
-
-    return (
-        <div dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
-            <p> {t.number} {values.contractNum}</p>
-            <h2>{t.title}</h2>
-            <p>{t.date} {formatDate(values.contractDate)}</p>
-
-            {/* Parties Context */}
-            <div>
-                <div>
-                    <h4>{t.partyA}</h4>
-                    <p>{values.contractProvider || '---------'}</p>
-                </div>
-                <div>
-                    <h4>{t.partyB}</h4>
-                    <p>{values.contractClient || '----------'}</p>
-
-                </div>
-            </div>
-            {/**Contract Content */}
-            <div>
-                <h4> {t.scope}</h4>
-                <p style={{ whiteSpace: "pre-line"}}>{values.scopeOfWork}</p>
-            </div>
-
-            {/**Payment Terms */}
-            {values.paymentTerms && (
-            <>
-                <h4>{t.payment}</h4>
-                <p style={{ whiteSpace: "pre-line" }}>{values.paymentTerms}</p>
-            </>
-            )}
-
-            {/**Termination Clause */}
-            {values.terminationClause && (
-            <>
-                <h4> {t.termination} </h4>
-                <p style={{ whiteSpace: "pre-line" }}>{values.terminationClause}</p>
-            </>
-            )}
-
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 48 }}>
-                <div>
-                <div style={{ borderTop: "1px solid #000", width: 180 }} />
-                <p>{values.contractProvider || t.partyA }</p>
-                </div>
-                <div>
-                <div style={{ borderTop: "1px solid #000", width: 180 }} />
-                <p>{values.contractClient || t.partyB }</p>
-                </div>
-            </div>
+  return (
+    <div className="doc" dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
+      
+      {/**Contract Header */}
+      <header className="doc-header">
+        <div>
+          <h1 className="doc-title">{t.title}</h1>
+          <p className="doc-number">{t.number} <bdi>{values.contractNumber}</bdi></p>
         </div>
-    )
+        <div className="doc-meta">
+          <p><span>{t.date}</span><bdi>{formatDate(values.contractDate)}</bdi></p>
+        </div>
+      </header>
+
+      {/**Contract Parties */}
+      <section className="doc-parties">
+        <div>
+          <h4 className="doc-label">{t.partyA}</h4>
+          <p className="doc-strong">{values.contractProvider || "—"}</p>
+        </div>
+        <div>
+          <h4 className="doc-label">{t.partyB}</h4>
+          <p className="doc-strong">{values.contractClient || "—"}</p>
+        </div>
+      </section>
+
+        {/**Scope Of Work */}
+      <section className="doc-section">
+        <h4>{t.scope}</h4>
+        <p className="doc-pre">{values.scopeOfWork || "—"}</p>
+      </section>
+
+        {/**Payment Terms */}
+      {values.paymentTerms && (
+        <section className="doc-section">
+          <h4>{t.payment}</h4>
+          <p className="doc-pre">{values.paymentTerms}</p>
+        </section>
+      )}
+
+      {/**Termination Terms */}
+      {values.terminationClause && (
+        <section className="doc-section">
+          <h4>{t.termination}</h4>
+          <p className="doc-pre">{values.terminationClause}</p>
+        </section>
+      )}
+
+      {/**Signatures */}
+      <div className="doc-signatures">
+        <div className="sig-line">{values.contractProvider || t.partyA}</div>
+        <div className="sig-line">{values.contractClient || t.partyB}</div>
+      </div>
+    </div>
+  );
 }
