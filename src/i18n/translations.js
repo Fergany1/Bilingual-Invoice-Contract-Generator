@@ -1,16 +1,16 @@
 export const translations = {
   en: {
     contract: {
-      number: "CON", title: "Service Agreement", date: "Date",
+      number: "Contract #", title: "Service Agreement", date: "Date",
       partyA: "Party A (Service Provider)", partyB: "Party B (Client)",
       scope: "Scope of Work", payment: "Payment Terms", termination: "Termination",
     },
     invoice: {
-      number: "INV", title: "Invoice", issueDate: "Issue date", dueDate: "Due date",
+      number: "Invoice #", title: "Invoice", issueDate: "Issue date", dueDate: "Due date",
       from: "From", billTo: "Bill to", item: "Item", description: "Description",
       qty: "Qty", price: "Price", total: "Total", subtotal: "Subtotal",
       discount: "Discount", tax: "Tax", paid: "Paid", balanceDue: "Balance due",
-      howToPay: "How to pay",
+      howToPay: "How to pay" , notes: "Notes",
       units: { hour: "hour", day: "day", item: "item", project: "project" },
     },
   },
@@ -22,10 +22,10 @@ export const translations = {
     },
     invoice: {
       number: "فاتورة رقم", title: "فاتورة", issueDate: "تاريخ الإصدار", dueDate: "تاريخ الاستحقاق",
-      from: "من", billTo: "فاتورة إلى", item: "البند", description: "الوصف",
+      from: "من", billTo: " إلى", item: "البند", description: "الوصف",
       qty: "الكمية", price: "السعر", total: "الإجمالي", subtotal: "المجموع الفرعي",
       discount: "الخصم", tax: "الضريبة", paid: "المدفوع", balanceDue: "المبلغ المستحق",
-      howToPay: "طريقة الدفع",
+      howToPay: "طريقة الدفع", notes: "ملاحظات",
       units: { hour: "ساعة", day: "يوم", item: "قطعة", project: "مشروع" },
     },
   },

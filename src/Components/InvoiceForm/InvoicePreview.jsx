@@ -1,7 +1,7 @@
 import { useForm } from "../../Hooks/useForm";
 import { calculateTotals } from "../../utils/calculateTotals";
 import { formatMoney } from "../../utils/formatMoney";
-import { addDays } from "../../utils/dates";
+import { addDays , formatDate } from "../../utils/dates";
 import { PaymentDetails } from "./PaymentDetails";
 import { translations } from "../../i18n/translations";
 
@@ -36,7 +36,7 @@ export function InvoicePreview() {
                 <h2>{t.title}</h2>
 
                 <div>
-                    <p>{t.date} : {values.issueDate || '--/--/---- '}</p>
+                    <p><bdi>{t.issueDate} : {formatDate(values.issueDate)}</bdi></p>
                 </div>
             </div>
             {/* Parties Context */}
@@ -47,7 +47,7 @@ export function InvoicePreview() {
                     <p>{values.providerEmail}</p>
                 </div>
                 <div>
-                    <h4>{t.billto}</h4>
+                    <h4>{t.billTo}</h4>
                     <p>{values.clientName || '----------'}</p>
                     <p>{values.companyName || '---------'}</p>
                     <p>{values.clientEmail}</p>
@@ -95,13 +95,13 @@ export function InvoicePreview() {
                 <p>{t.paid}: <strong>{formatMoney(values.amountPaid , values.currency)}</strong></p>
                 )}
                 <h3>{t.balanceDue}: <strong>{formatMoney(balanceDue , values.currency)}</strong></h3>
-                <p>{t.issueDate}:<strong>{values.issueDate}</strong></p>
-                <p>{t.dueDate}: <strong>{addDays(values.issueDate , values.dueDate)}</strong></p>
+                <p>{t.issueDate}:<strong>{formatDate(values.issueDate)}</strong></p>
+                <p>{t.dueDate}: <strong>{formatDate(addDays(values.issueDate , values.dueDate))}</strong></p>
             </div>
             <hr />
             {values.paymentDetails && (
                 <div>
-                    <h4>{t.howtopay}</h4>
+                    <h4>{t.howToPay}</h4>
                     <p>{values.paymentMethod}</p>
                     <p
                     style={{ whiteSpace: 'pre-line'}}>

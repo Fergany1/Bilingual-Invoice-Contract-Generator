@@ -1,5 +1,6 @@
 import { useForm } from "../../Hooks/useForm"
 import { translations } from "../../i18n/translations";
+import { formatDate } from "../../utils/dates";
 
 export function ContractPreview(){
 
@@ -11,7 +12,7 @@ export function ContractPreview(){
         <div dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
             <p> {t.number} {values.contractNum}</p>
             <h2>{t.title}</h2>
-            <p>{t.date} {values.contractDate || "--/--/----"}</p>
+            <p>{t.date} {formatDate(values.contractDate)}</p>
 
             {/* Parties Context */}
             <div>
