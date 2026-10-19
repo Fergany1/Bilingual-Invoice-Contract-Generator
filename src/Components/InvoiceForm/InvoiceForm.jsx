@@ -48,7 +48,7 @@ export default function InvoiceForm () {
                 providerName: values.providerName,
             })}
             />
-
+        <div className="card">
             <label>
                 Document Language
                 <select name="lang" value={values.lang} onChange={handleChange}>
@@ -56,6 +56,7 @@ export default function InvoiceForm () {
                     <option value="ar">العربية</option>
                 </select>
             </label>
+        </div>
         <section className="preview-card">
             <h2>Preview</h2>
             <div className="print-area" ref={printRef}> 
