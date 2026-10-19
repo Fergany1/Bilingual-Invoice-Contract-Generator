@@ -51,19 +51,21 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
     };
 
     return(
-        <div>
-            <button type="button" onClick={guard(() => window.print())}>Print</button>
-            <button type="button" onClick={guard(download)}>DownLoad PDF</button>
-            <button type="button" onClick={guard(() => setShowPicker(true))}>Share Via WhatsApp</button>
-            <button type="button" onClick={guard(shareFile)}>Share PDF (Mobile)</button>
+        <>
+            <div className="actions">
+                <button type="button" className="primary" onClick={guard(() => window.print())}>Print</button>
+                <button type="button" onClick={guard(download)}>DownLoad PDF</button>
+                <button type="button" onClick={guard(() => setShowPicker(true))}>Share Via WhatsApp</button>
+                <button type="button" onClick={guard(shareFile)}>Share PDF (Mobile)</button>
+            </div>
             
-            {showPicker && <SharePicker onPick={pick} onClose={() => setShowPicker(false)} />}
-            {errors.length > 0 && 
-            <ul>
+            {errors.length > 0 && (
+                <ul>
                 {errors.map((e) => <li key={e}>
                     {e}
                 </li>)}    
-            </ul>}
-        </div>
+            </ul>)}
+            {showPicker && <SharePicker onPick={pick} onClose={() => setShowPicker(false)} />}
+        </>
     )
 }

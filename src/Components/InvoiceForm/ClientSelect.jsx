@@ -17,10 +17,10 @@ const ProviderForm = ({ onConfirm}) => {
     
 
     return (
-        <div>
+        <div className="provider-from">
 
             <form 
-            className="provider-form"
+            className="fields"
             onSubmit={handleConfirm}>
                 <h2>From : Provider</h2>
                 <div>
@@ -76,7 +76,7 @@ const ProviderForm = ({ onConfirm}) => {
                         placeholder="Service Details ..."></textarea>
                     </label>
                 </div>
-                <button type="submit">Confirm </button>
+                <button className="primary" type="submit">Confirm </button>
             </form>
 
         </div>
@@ -99,8 +99,8 @@ const ClientForm = ({ onConfirm }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleConfirm}>
+        <div className="fields">
+            <form className="primary" onSubmit={handleConfirm}>
                 <h2>Bill To : Client</h2>
 
                 <div>
@@ -180,21 +180,20 @@ export default function ClientSelect() {
     const [ user , setUser ] = useState('Provider')
     
     return (
-        <div>
-                <button type="button" onClick={() => setUser('Provider')}>Provider</button>
-                <button type="button" onClick={() => setUser('Client')}>Client</button>
-                {/* Conditional Rendering For Client & Provider */}
-                {user === 'Provider' ? (
-                <ProviderForm onConfirm={() => setUser('Client')}/>
-            ) : (
-
-                <ClientForm onConfirm={() => console.log("All identity data confirmed! Ready to build document.")}/>
-                
-                
-            )}
+        <div className="card">
+            <div className="seg">
+                <button type="button" className={user === 'Provider' ? 'primary' : ''} onClick={() => setUser('Provider')}>Provider</button>
+                <button type="button" className={user === 'Client' ? 'primary' : ''} onClick={() => setUser('Client')}>Client</button>
             </div>
+            {/* Conditional Rendering For Client & Provider */}
+            {user === 'Provider' ? (
+            <ProviderForm onConfirm={() => setUser('Client')}/>
+            ) : (
+            <ClientForm onConfirm={() => console.log("All identity data confirmed! Ready to build document.")}/>
+            )}
+        </div>
 
-        )
+    )
 
 }
      
