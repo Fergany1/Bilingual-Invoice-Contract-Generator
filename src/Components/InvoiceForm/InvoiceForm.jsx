@@ -56,9 +56,12 @@ export default function InvoiceForm () {
                     <option value="ar">العربية</option>
                 </select>
             </label>
-        <div className="print-area" ref={printRef}> 
-            <InvoicePreview />
-        </div>
+        <section className="preview-card">
+            <h2>Preview</h2>
+            <div className="print-area" ref={printRef}> 
+                <InvoicePreview />
+            </div>
+        </section>
         
     </>)
 }

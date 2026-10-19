@@ -71,13 +71,13 @@ export default function ServiceDetails() {
                     {values.items.map((item , index) => 
 
                         <tr key={item.id}>
-                            <td>
+                            <td data-label="#">
                                 <strong>
                                     {index+1}
                                 </strong>
                             </td>
 
-                            <td>
+                            <td data-label="Title">
                                 <input type="text" 
                                 placeholder="Title" 
                                 name="title"
@@ -85,7 +85,7 @@ export default function ServiceDetails() {
                                 onChange={(e) => handleTableChange('items' , index , e)} />
 
                             </td>
-                            <td>
+                            <td data-label="Description">
                                 <textarea type="text" 
                                 placeholder="Service Details ..." 
                                 value={item.description}
@@ -93,7 +93,7 @@ export default function ServiceDetails() {
                                 onChange={(e) => handleTableChange('items' , index , e)} />
 
                             </td>
-                            <td>
+                            <td data-label="Quantity">
                                 <input type="text" 
                                 placeholder="Quantity ..." 
                                 value={item.quantity}
@@ -101,7 +101,7 @@ export default function ServiceDetails() {
                                 onChange={(e) => handleTableChange('items' , index , e)} />
 
                             </td>
-                            <td>
+                            <td data-label="Unit">
                                 <select name="unit" 
                                 value={item.unit} 
                                 onChange={(e) => handleTableChange('items' ,index , e)}>
@@ -112,7 +112,7 @@ export default function ServiceDetails() {
                                 </select>
                             </td>
 
-                            <td>
+                            <td data-label="Price">
                                 <input type="text" 
                                 placeholder="Price ..." 
                                 value={item.price}
@@ -121,7 +121,7 @@ export default function ServiceDetails() {
 
                             </td>
 
-                            <td>
+                            <td data-label="">
 
                                 <button 
                                 className="danger"

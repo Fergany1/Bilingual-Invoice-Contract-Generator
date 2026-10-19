@@ -11,10 +11,10 @@ export default function ContractForm() {
 
 
      return (
-        <div>
+        <div className="card">
             <h2>Create Legal Contract</h2>
             
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form className="fields" onSubmit={(e) => e.preventDefault()}>
                 {/* 1. Basic Metadata Fields */}
                 <div>
                     <label>
@@ -114,10 +114,12 @@ export default function ContractForm() {
                     })
                 }
                 />
-
-            <div className="print-area" ref={printRef}>
-            <ContractPreview />
-            </div>
+            <section className="preview-card">
+                <h2>Preview</h2>
+                <div className="print-area" ref={printRef}>
+                    <ContractPreview />
+                </div>
+            </section>
         </div>
     );
 }
