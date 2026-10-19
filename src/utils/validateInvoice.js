@@ -8,11 +8,9 @@ export function validate(values) {
     if (validItems.length === 0) errors.push('Add At Least One Item With A Title!');
 
     values.items.forEach((item , i) => {
-        if(parseFloat(item.quantity) <= 0) 
-            errors.push(`Row ${i + 1}: Quantity Must Be Above Zero!`);
-
-        if(parseFloat(item.price) < 0) 
-            errors.push(`Row ${i + 1}: Price Can't Be Negative !`);
+        if (!item.title?.trim()) errors.push(`Row ${i + 1}: add a title or remove the row`);
+        if (!(parseFloat(item.quantity) > 0)) errors.push(`Row ${i + 1}: quantity must be above zero!`);
+        if (!(parseFloat(item.price) >= 0)) errors.push(`Row ${i + 1}: price must be a number, 0 or above!`);
     });
 
     return errors;

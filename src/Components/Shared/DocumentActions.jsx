@@ -11,7 +11,7 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
     const pdfOptions = {
         margin: 10,
         fileName: `${fileName}.pdf`,
-        html2canvas: { scale: 2 , scrollY: 0},
+        html2canvas: { scale: 2 , scrollY: 0 , windowWidth: 900},
         jsPDF: { format: "a4"},
     };
 

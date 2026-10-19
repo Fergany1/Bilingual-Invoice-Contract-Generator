@@ -9,6 +9,10 @@ export function InvoicePreview() {
     const { values } = useForm();
     const lang = values.lang || "en";
     const t = translations[lang].invoice;
+    
+    // Formating Money & Dates
+    const money = (n) => formatMoney(n , values.currency);
+    const dueDate = addDays(values.issueDate , values.dueDate);
 
     const {         
         lines,
@@ -29,88 +33,98 @@ export function InvoicePreview() {
     );
 
     return (
-        <div dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
+        <div className="doc" dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
+            
             {/*Invoice Preview Header*/}
-            <div>
-                <p>{t.number} - {values.invoiceNumber}</p>
-                <h2>{t.title}</h2>
+            <header className="doc-header">
+                <div>
+                    <h1>{t.title}</h1>
+                    <p className="doc-number">{t.number} <bdi>{values.invoiceNumber}</bdi></p>
+                </div>
+                <div className="doc-meta">
+                    <p><span>{t.issueDate}</span><bdi>{formatDate(values.issueDate)}</bdi></p>
+                    <p><span>{t.dueDate}</span><bdi>{formatDate(values.dueDate)}</bdi></p>
+                </div>
+            </header>
 
-                <div>
-                    <p><bdi>{t.issueDate} : {formatDate(values.issueDate)}</bdi></p>
-                </div>
-            </div>
             {/* Parties Context */}
-            <div>
+            <section className="doc-parties">
                 <div>
-                    <h4>{t.from}</h4>
-                    <p>{values.providerName || '---------'}</p>
-                    <p>{values.providerEmail}</p>
+                    <h4 className="doc-label">{t.from}</h4>
+                    <p className="doc-strong">{values.providerName || '-'}</p>
+                    {values.providerAddress && <p>{values.providerAddress}</p>}
+                    {values.providerNumber && <p>{values.providerNumber}</p>}
+                    {values.providerEmail && <p>{values.providerEmail}</p>}
                 </div>
                 <div>
-                    <h4>{t.billTo}</h4>
-                    <p>{values.clientName || '----------'}</p>
-                    <p>{values.companyName || '---------'}</p>
-                    <p>{values.clientEmail}</p>
+                    <h4 className="doc-label">{t.billTo}</h4>
+                    <p className="doc-strong">{values.clientName || '-'}</p>
+                    {values.companyName && <p>{values.companyName}</p>}
+                    {values.shippingAddress && <p className="doc-pre">{values.shippingAddress}</p>}
+                    {values.clientNumber && <p>{values.clientNumber}</p>}
+                    {values.clientEmail && <p>{values.clientEmail}</p>}
+                
                 </div>
-            </div>
+            </section>
+
             {/* Data Rows Table Grid */}
-            <table>
+            <table className="doc-table">
                 <thead>
                     <tr>
                         <th>{t.item}</th> 
-                        <th>{t.description}</th> 
-                        <th>{t.qty}</th> 
-                        <th>{t.price}</th>
-                        <th>{t.total}</th>
+                        <th className="num">{t.qty}</th> 
+                        <th className="num">{t.price}</th>
+                        <th className="num">{t.total}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {lines.map((item , index) => (
-                        <tr key={item.id || index}>
+                    {lines.map((line , index) => (
+                        <tr key={line.id || index}>
                             
                             <td>
-                                {item.title || '------------'}
+                                <strong>{line.title}</strong>
+                                {line.description && <div className="doc-muted doc-pre">{line.description}</div>}
                             </td> 
-                            <td>
-                                {item.description || '--------------'}
-                            </td>
-                            <td>{item.quantity} {t.units[item.unit]} </td> 
-                            <td>{formatMoney(item.price , values.currency)}</td>
-                            <td> 
-                                {formatMoney(item.lineTotal , values.currency)}
-                            </td>
+                            <td className="num"><bdi>{line.quantity}</bdi> {t.units[line.unit] || line.unit} </td> 
+                            <td className="num"><bdi className="money">{money(line.price)}</bdi></td>
+                            <td className="num"><bdi className="money">{money(line.subTotal)}</bdi></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <div>
-                <p>{t.subtotal}: <strong>{formatMoney(subTotal , values.currency)}</strong></p>
-                <p>{t.tax} ({values.taxRate}%): <strong>{formatMoney(tax , values.currency)}</strong></p>
+
+            {/**Total Summary */}
+            <section className="doc-totals">
+                <div className="row"><span>{t.subtotal}</span><bdi className="money">{money(subTotal)}</bdi></div>
                 {discountAmount > 0 && (
-                <p>{t.discount}: <strong>-{formatMoney(discountAmount, values.currency)}</strong></p>
+                <div className="row"><span>{t.discount}</span><bdi className="money">-{money(discountAmount)}</bdi></div>
                 )}
-                <br />
-                <h3>{t.total}: <strong>{formatMoney(grandTotal , values.currency)}</strong></h3>
-                {parseFloat(values.amountPaid) > 0 && (
-                <p>{t.paid}: <strong>{formatMoney(values.amountPaid , values.currency)}</strong></p>
-                )}
-                <h3>{t.balanceDue}: <strong>{formatMoney(balanceDue , values.currency)}</strong></h3>
-                <p>{t.issueDate}:<strong>{formatDate(values.issueDate)}</strong></p>
-                <p>{t.dueDate}: <strong>{formatDate(addDays(values.issueDate , values.dueDate))}</strong></p>
-            </div>
-            <hr />
-            {values.paymentDetails && (
-                <div>
-                    <h4>{t.howToPay}</h4>
-                    <p>{values.paymentMethod}</p>
-                    <p
-                    style={{ whiteSpace: 'pre-line'}}>
-                        {values.paymentDetails}
-                    </p>
+                <div className="row">
+                <span>{t.tax} (<bdi>{values.taxRate}%</bdi>)</span>
+                <bdi className="money">{money(tax)}</bdi>
                 </div>
+                <div className="row grand"><span>{t.total}</span><bdi className="money">{money(grandTotal)}</bdi></div>
+                {parseFloat(values.amountPaid) > 0 && (
+                <div className="row"><span>{t.paid}</span><bdi className="money">-{money(values.amountPaid)}</bdi></div>
+                )}
+                <div className="row balance"><span>{t.balanceDue}</span><bdi className="money">{money(balanceDue)}</bdi></div>
+            </section>
+
+            {/**Payment Details */}
+            {values.paymentDetails && (
+                <section className="doc-section">
+                    <h4>{t.howToPay}</h4>
+                    {values.paymentMethod && <p className="doc-strong">{values.paymentMethod}</p>}
+                    <p className="doc-pre">{values.paymentDetails}</p>
+                </section>
             )}
-            {values.notes && <p style={{ whiteSpace: 'pre-line'}}>{values.notes}</p>}
-            
+            {values.notes && (
+                <section className="doc-section">
+                    <h4>{t.notes}</h4>
+                    <p className="doc-pre">{values.notes}</p>
+                </section>
+            )}
+                    
         </div>
     )
 }
