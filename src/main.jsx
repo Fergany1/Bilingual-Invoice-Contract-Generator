@@ -3,7 +3,7 @@ import "@fontsource/cairo/600.css";
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import './print.css'
+import './styles/print.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
