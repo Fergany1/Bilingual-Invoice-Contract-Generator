@@ -1,0 +1,72 @@
+.doc {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.doc[dir="rtl"] { font-family: "Cairo", sans-serif; }
+
+.doc h1, .doc h4, .doc p { margin: 0; }
+
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #1f3b5c;
+}
+.doc-title { font-size: 28px; color: #1f3b5c; }
+.doc-number { color: #666; margin-top: 4px; }
+.doc-meta p { display: flex; justify-content: space-between; gap: 16px; }
+.doc-meta span, .doc-muted { color: #666; }
+
+.doc-parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.doc-label { font-size: 12px; color: #666; margin-bottom: 6px; }
+/* letter-spacing breaks Arabic letter joining, so only apply it to English */
+.doc[dir="ltr"] .doc-label { text-transform: uppercase; letter-spacing: 0.05em; }
+.doc-strong { font-weight: 600; }
+.doc-pre { white-space: pre-line; }
+
+.doc-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+.doc-table th {
+  background: #f1f4f8;
+  text-align: start;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid #d5dbe3;
+}
+.doc-table td { padding: 10px 12px; border-bottom: 1px solid #eceff3; vertical-align: top; }
+.doc-table .num { text-align: end; white-space: nowrap; }
+.doc-table tr { break-inside: avoid; }
+
+.doc-totals { width: 100%; max-width: 320px; margin-inline-start: auto; }
+.doc-totals .row { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; }
+.doc-totals .grand { border-top: 1px solid #d5dbe3; font-weight: 600; padding-top: 10px; }
+.doc-totals .balance {
+  border-top: 2px solid #1f3b5c;
+  margin-top: 6px;
+  padding-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f3b5c;
+}
+.money { direction: ltr; white-space: nowrap; }
+
+.doc-section { margin-top: 28px; }
+.doc-section h4 { color: #1f3b5c; margin-bottom: 6px; }
+
+.doc-signatures { display: flex; justify-content: space-between; gap: 32px; margin-top: 64px; }
+.sig-line { border-top: 1px solid #000; width: 200px; padding-top: 6px; }

@@ -115,11 +115,7 @@ export default function ContractForm() {
                 }
                 />
 
-            <div
-            className="print-area"
-            ref={printRef}
-            style={{ display: "flex", justifyContent: "center", padding: "10px", background: "#fff", color: "#000" }}
-            >
+            <div className="print-area" ref={printRef}>
             <ContractPreview />
             </div>
         </div>

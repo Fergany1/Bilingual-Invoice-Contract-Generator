@@ -56,9 +56,7 @@ export default function InvoiceForm () {
             })}
             />
 
-        <div
-        style={{ display: 'flex', justifyContent: 'center', padding:'10px' }} 
-        className="print-area" ref={printRef}> 
+        <div className="print-area" ref={printRef}> 
             <InvoicePreview />
         </div>
         
