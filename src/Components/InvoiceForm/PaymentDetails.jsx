@@ -3,7 +3,7 @@ import { useForm } from "../../Hooks/useForm";
 export function PaymentDetails() {
     const { values  , handleChange } = useForm();
     return (
-        <div>
+        <div className="card">
             <h2>Payment Details</h2>
             <input 
             name="paymentMethod"

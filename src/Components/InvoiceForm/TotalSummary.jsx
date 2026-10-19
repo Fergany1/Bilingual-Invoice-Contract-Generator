@@ -24,32 +24,36 @@ export default function TotalSummary() {
     );
 
     return (
-        <div>
+        <div className="card">
             <h2>Invoice Summary</h2>
-            <label>
-                Discount 
-                <input 
-                type="number" name="discount" 
-                value={values.discount} onChange={handleChange}/>
-            </label>
-            <label>
-                Tax Rate (%) 
-                <input 
-                type="number" name="taxRate" 
-                value={values.taxRate} onChange={handleChange}/>
-            </label>
-            <label>
-                Amount Paid 
-                <input 
-                type="number" name="amountPaid" 
-                value={values.amountPaid} onChange={handleChange}/>
-            </label>
+            <div className="fields">
+                <label>
+                    Discount 
+                    <input 
+                    type="number" name="discount" 
+                    value={values.discount} onChange={handleChange}/>
+                </label>
+                <label>
+                    Tax Rate (%) 
+                    <input 
+                    type="number" name="taxRate" 
+                    value={values.taxRate} onChange={handleChange}/>
+                </label>
+                <label>
+                    Amount Paid 
+                    <input 
+                    type="number" name="amountPaid" 
+                    value={values.amountPaid} onChange={handleChange}/>
+                </label>
+            </div>
 
-            <p>Sub-Total: <strong>{formatMoney(subTotal , values.currency)}</strong></p>
-            {discountAmount > 0 && <p>Discount: <strong>-{formatMoney(discountAmount , values.currency)}</strong></p>}
-            <p>Tax ({values.taxRate}%): <strong>{formatMoney(tax , values.currency)}</strong></p>
-            <h3>Total: <strong>{formatMoney(grandTotal , values.currency)}</strong></h3>
-            <h3>Balance Due: <strong>{formatMoney(balanceDue , values.currency)}</strong></h3>
+            <div className="summary">
+                <p>Sub-Total: <strong>{formatMoney(subTotal , values.currency)}</strong></p>
+                {discountAmount > 0 && <p>Discount: <strong>-{formatMoney(discountAmount , values.currency)}</strong></p>}
+                <p>Tax ({values.taxRate}%): <strong>{formatMoney(tax , values.currency)}</strong></p>
+                <h3>Total: <strong>{formatMoney(grandTotal , values.currency)}</strong></h3>
+                <h3>Balance Due: <strong>{formatMoney(balanceDue , values.currency)}</strong></h3>
+            </div>
         </div>
     )
 }

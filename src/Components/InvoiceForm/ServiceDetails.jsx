@@ -11,9 +11,9 @@ export default function ServiceDetails() {
 
 
     return(
-        <div>
+        <div className="card">
         {/* SECTION A: SERVICE DETAILS DATA */}
-        <div>
+        <div className="fields">
             <h2>Services Details</h2>
             <label>
                 {/* The Invoice Date the day the invoice being sent */}
@@ -55,7 +55,7 @@ export default function ServiceDetails() {
 
         {/* SECTION B: ITEMIZATION DYNAMIC TABLE */}
             <h2>Services Provided</h2>
-            <table>
+            <table className="items-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -124,6 +124,7 @@ export default function ServiceDetails() {
                             <td>
 
                                 <button 
+                                className="danger"
                                 type="button"
                                 onClick={() => removeTableRow('items' , index)}
                                 disabled={values.items.length === 1}
