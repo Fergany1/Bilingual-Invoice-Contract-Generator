@@ -99,8 +99,8 @@ const ClientForm = ({ onConfirm }) => {
     }
 
     return (
-        <div className="fields">
-            <form className="primary" onSubmit={handleConfirm}>
+        <div>
+            <form className="fields" onSubmit={handleConfirm}>
                 <h2>Bill To : Client</h2>
 
                 <div>
