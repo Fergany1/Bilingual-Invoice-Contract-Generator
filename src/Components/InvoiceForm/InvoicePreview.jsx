@@ -2,7 +2,6 @@ import { useForm } from "../../Hooks/useForm";
 import { calculateTotals } from "../../utils/calculateTotals";
 import { formatMoney } from "../../utils/formatMoney";
 import { addDays , formatDate } from "../../utils/dates";
-import { PaymentDetails } from "./PaymentDetails";
 import { translations } from "../../i18n/translations";
 
 export function InvoicePreview() {
@@ -38,7 +37,7 @@ export function InvoicePreview() {
             {/*Invoice Preview Header*/}
             <header className="doc-header">
                 <div>
-                    <h1>{t.title}</h1>
+                    <h1 className="doc-title">{t.title}</h1>
                     <p className="doc-number">{t.number} <bdi>{values.invoiceNumber}</bdi></p>
                 </div>
                 <div className="doc-meta">

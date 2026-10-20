@@ -15,7 +15,8 @@ export function useFormLogics  (initialValue , storageKey) {
             // ...initialValue => supplies every key with default Values
             // ...savedData => Overwrites those default values
         } catch (err) {
-            console.warn("Saved Data Was Un-Readable Setting Default " , err)
+            console.warn("Saved Data Was Un-Readable Setting Default " , err);
+            return initialValue;
         }
     })
     

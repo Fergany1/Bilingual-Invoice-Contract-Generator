@@ -10,7 +10,7 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
 
     const pdfOptions = {
         margin: 10,
-        fileName: `${fileName}.pdf`,
+        fileName: `${filename}.pdf`,
         html2canvas: { scale: 2 , scrollY: 0 , windowWidth: 900},
         jsPDF: { format: "a4"},
     };
@@ -24,15 +24,16 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
     const download = async () => {
         await document.fonts.ready;
         return html2pdf().set(pdfOptions)
-                .from(targetRef.current).save();
+        .from(targetRef.current).save();
     }
     
     const shareFile = async () => {
+        await document.fonts.ready;
         const blob = await html2pdf().set(pdfOptions)
                 .from(targetRef.current).outputPdf("blob");
 
         const file = new File([blob],
-            `${fileName}.pdf` , { type: "application/pdf"});
+            `${filename}.pdf` , { type: "application/pdf"});
         if (navigator.canShare?.({ files:[file]})) {
             try {
                 await navigator.share({ files: [file] , text:fileName});
@@ -54,13 +55,13 @@ export function DocumentActions({buildMessage , targetRef , fileName ,validate})
         <>
             <div className="actions">
                 <button type="button" className="primary" onClick={guard(() => window.print())}>Print</button>
-                <button type="button" onClick={guard(download)}>DownLoad PDF</button>
+                <button type="button" onClick={guard(download)}>Download PDF</button>
                 <button type="button" onClick={guard(() => setShowPicker(true))}>Share Via WhatsApp</button>
                 <button type="button" onClick={guard(shareFile)}>Share PDF (Mobile)</button>
             </div>
             
             {errors.length > 0 && (
-                <ul>
+                <ul className="errors">
                 {errors.map((e) => <li key={e}>
                     {e}
                 </li>)}    
