@@ -1,1 +1,0 @@
-body{color:#fff;background-color:#333}.print-area{color:#000;background:#fff}@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{color:#000;background:#fff;font-family:Georgia,Times New Roman,Times,serif;font-size:24px;font-weight:600;position:absolute;top:5px;left:5px}tr{break-inside:avoid}}@page{size:A4;margin:12mm}
