@@ -5,7 +5,7 @@ export function SharePicker({ onPick , onClose }) {
 
     return (
         <div className="picker card">
-            <h3>Send to....</h3>
+            <h3>Send to...</h3>
             {clients.length === 0 && <p>No Saved Clients Yet.</p>}
             <ul>
                 {clients.map((c) =>( 

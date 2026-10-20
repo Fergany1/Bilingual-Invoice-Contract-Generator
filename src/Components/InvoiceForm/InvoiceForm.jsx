@@ -31,10 +31,10 @@ export default function InvoiceForm () {
     
     return(<>
         <div> {/* ClientSelect, ServicesDetails, TotalSummary */} </div>
-        <ClientSelect /> <hr />
-        <ServiceDetails /> <hr />
-        <PaymentDetails /> <hr />
-        <TotalSummary /> <hr /> <br />
+        <ClientSelect />
+        <ServiceDetails />
+        <PaymentDetails />
+        <TotalSummary /> 
         {/**Invoice Preview And BTNs for Print & Download */}
         <DocumentActions 
             targetRef={printRef}
