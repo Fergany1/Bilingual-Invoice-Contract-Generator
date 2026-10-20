@@ -4,7 +4,7 @@ import { SharePicker } from "./SharePicker";
 import html2pdf from "html2pdf.js";
 
 
-export function DocumentActions({buildMessage , targetRef , fileName ,validate}){
+export function DocumentActions({buildMessage , targetRef , filename ,validate}){
     const [ errors , setErrors ] = useState([]);
     const [ showPicker , setShowPicker ] = useState(false);
 
