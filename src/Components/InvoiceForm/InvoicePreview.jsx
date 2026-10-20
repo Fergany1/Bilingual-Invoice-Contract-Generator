@@ -87,7 +87,7 @@ export function InvoicePreview() {
                             </td> 
                             <td className="num"><bdi>{line.quantity}</bdi> {t.units[line.unit] || line.unit} </td> 
                             <td className="num"><bdi className="money">{money(line.price)}</bdi></td>
-                            <td className="num"><bdi className="money">{money(line.subTotal)}</bdi></td>
+                            <td className="num"><bdi className="money">{money(line.lineTotal)}</bdi></td>
                         </tr>
                     ))}
                 </tbody>
